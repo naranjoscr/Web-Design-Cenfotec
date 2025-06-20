@@ -1,0 +1,135 @@
+
+body{
+        overflow-x: hidden;
+}
+
+*{
+    padding: 0px;
+    margin:0px;
+}
+.formatos1{
+    font-size: 30px;
+    color:#1570cd;
+    font-weight: bolder;
+}
+
+
+.bannerweb{
+    background-image: url("../imagenes/volcano.jpg");    
+    background-position: center;    
+    height: 100vh;
+    box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.678);
+    background-color:rgba(26, 6, 6, 0.486);
+    background-blend-mode: multiply; 
+
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.centrado{
+    text-align: center;
+}
+
+.bajar1{
+    padding-top: 150px;
+}
+.bajar2{
+    padding-top: 50px;
+}
+.bajar3{
+    padding-top: 30px;
+}
+
+h1{
+    color:#fff;    
+    font-size: 70px;
+}
+h2{
+    color:#fff;
+    font-size: 50px;
+}
+h3{
+    color:#000;
+    font-size: 40px;
+}
+.color1{
+    color:#fff;
+}
+p{
+    font-size: 20px;
+    /*superior/inferior  izq-dere*/
+    margin:40px 100px;
+    text-align: justify;
+}
+
+
+/*botones*/
+.botones {
+    width: 150px;
+    height: 30px;
+    border: 3px solid #070707;
+    cursor: pointer;
+    color: #fff;
+    background-color: #009345;
+    font-family: Arial;
+    font-size: 20px;
+    font-weight: bold;
+    /*espaciado*/
+    padding: 6px 35px;
+    /*quita subrayado*/
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #1570cd;
+    transition: all linear 0.2s;
+    /*forma del boton redondeado*/
+    border-radius: 24px;
+}
+
+.botones:hover {
+    width: 150px;
+    height: 30px;
+    background-color: #12cd53;
+    color: #efefef;
+    text-decoration: none;
+    font-size: 20px;
+    transition: all linear 0.2s;
+}
+
+/*formulario*/
+
+ .configform1{    
+    display: flex;
+    justify-content: center;    
+    color: #fff;    
+}
+.error{
+    border-color: red;
+}
+ label{
+    font-size: 24px;   
+    float: left;
+    margin:10px 20px 10px 20px;
+ }
+
+ /*controles input*/
+input{
+    display: block;
+    margin-top: 10px;
+}
+ .form-control{
+    font-size: 20px;   
+}
+
+footer{    
+    background-color: #000;
+    padding:20px 20px;
+}
+.formatospie{
+    color:#fff;
+    font-size: 24px;
+}
+
+/*lo pone a todo lo ancho*/
+video{
+    object-fit: cover;   
+}
