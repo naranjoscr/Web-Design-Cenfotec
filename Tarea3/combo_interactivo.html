@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <title>Interfaz Web</title>
+    <meta charset="utf-8">
+    <link href="imagenes/koala.png" rel="icon">      
+    <link href="css/index.css" rel="stylesheet">    
+
+    <!-- SweetAlert2 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>  
+
+  <body>
+
+    <section class="centrado bannerweb">
+      <div class="centrado bajar2">
+        <h1>Retos de programación:</h1>
+        <h2>Combo interactivo</h2>
+      </div>  
+
+      <div class="centrado bajar2">
+        <select id="opciones" class="botones">
+          <option value="">Seleccione una opción</option>
+          <option value="A">Nissan</option>
+          <option value="B">Toyota</option>
+          <option value="C">Ford</option>
+          <option value="D">Mitsubishi</option>
+          <option value="E">Porsche</option>
+        </select>
+      </div>
+
+      <div class="centrado bajar2">
+        <button class="botones" onclick="menu()">Ir</button>
+      </div>    
+    </section>
+
+    <footer class="centrado">            
+      <h2 class="centrado formatospie">Derechos Reservados Mario S.</h2>
+    </footer>
+
+    <script>
+      function menu() {
+        let seleccion = document.getElementById('opciones').value;
+
+        switch (seleccion) {
+          case 'A':
+            Swal.fire({
+              icon: "success",
+              title: "Nissan",
+              text: "Redirigiendo a Nissan...",
+              showConfirmButton: false,
+              timer: 2000,
+            }).then(() => {
+              window.location.href = "https://www.nissancr.com/";
+            });
+            return;
+
+          case 'B':
+            Swal.fire({
+              icon: "success",
+              title: "Toyota",
+              text: "Redirigiendo a Toyota...",
+              showConfirmButton: false,
+              timer: 2000,
+            }).then(() => {
+              window.location.href = "https://www.toyotacr.com/";
+            });
+            return;
+
+          case 'C':
+            Swal.fire({
+              icon: "success",
+              title: "Ford",
+              text: "Redirigiendo a Ford...",
+              showConfirmButton: false,
+              timer: 2000,
+            }).then(() => {
+              window.location.href = "https://www.centroamerica.ford.com/es/cri/";
+            });
+            return;
+
+          case 'D':
+            Swal.fire({
+              icon: "success",
+              title: "Mitsubishi",
+              text: "Redirigiendo a Mitsubishi...",
+              showConfirmButton: false,
+              timer: 2000,
+            }).then(() => {
+              window.location.href = "https://mitsubishi.cr/";
+            });
+            return;
+
+          case 'E':
+            Swal.fire({
+              icon: "success",
+              title: "Porsche",
+              text: "Redirigiendo a Porsche...",
+              showConfirmButton: false,
+              timer: 2000,
+            }).then(() => {
+              window.location.href = "https://www.porsche.com/latin-america-es/";
+            });
+            return;
+
+          default:
+            Swal.fire({
+              icon: "error",
+              title: "Error",
+              text: "Por favor seleccione una opción válida",
+            });
+        }
+      }
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <title>Interfaz Web</title>
+    <meta charset="utf-8">
+    <link href="imagenes/koala.png" rel="icon">      
+    <link href="css/index.css" rel="stylesheet">    
+    <style>
+      footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #000;
+        color: white;
+        padding: 15px 0;
+        font-weight: bold;
+        text-align: center;
+        z-index: 1001;
+      }
+      section {
+        padding-bottom: 60px; /* espacio para no quedar oculto bajo el footer */
+      }
+
+      .mapa-container {
+        position: relative;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .mapa-container img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 10px;
+      }
+
+      /* Puntos interactivos */
+      .punto {
+        position: absolute;
+        background-color: #009345;
+        color: white;
+        font-weight: bold;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+        cursor: pointer;
+        user-select: none;
+        box-shadow: 0 0 6px rgba(0,0,0,0.5);
+        transition: background-color 0.3s ease;
+      }
+
+      .punto:hover,
+      .punto:focus {
+        background-color: #12cd53;
+        outline: none;
+      }
+
+      /* Descripción desplegable */
+      #descripcion {
+        max-width: 900px;
+        margin: 20px auto;
+        padding: 15px;
+        border-radius: 10px;
+        background-color: #f0f0f0;
+        box-shadow: 0 0 8px rgba(0,0,0,0.15);
+        font-size: 18px;
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="centrado bannerweb" aria-label="Encabezado">
+      <div class="centrado bajar2">
+        <h1>Retos de programación:</h1>
+        <h2>Mapa Interactivo</h2>
+      </div>
+    </section>
+
+<section class="mapa-container" aria-label="Mapa interactivo con puntos seleccionables">
+  <img src="imagenes/mapa.jpg" alt="Mapa interactivo de Costa Rica con provincias y puntos" />
+
+  <!-- Puntos numerados -->
+  <div class="punto" style="top: 46%; left: 50%;" data-id="1" tabindex="0" role="button" aria-describedby="descripcion" aria-label="San José">1</div>
+  <div class="punto" style="top: 23%; left: 45%;" data-id="2" tabindex="0" role="button" aria-describedby="descripcion" aria-label="Alajuela">2</div>
+  <div class="punto" style="top: 43%; left: 60%;" data-id="3" tabindex="0" role="button" aria-describedby="descripcion" aria-label="Cartago">3</div>
+  <div class="punto" style="top: 27%; left: 55%;" data-id="4" tabindex="0" role="button" aria-describedby="descripcion" aria-label="Heredia">4</div>
+  <div class="punto" style="top: 27%; left: 30%;" data-id="5" tabindex="0" role="button" aria-describedby="descripcion" aria-label="Guanacaste">5</div>
+  <div class="punto" style="top: 46%; left: 70%;" data-id="6" tabindex="0" role="button" aria-describedby="descripcion" aria-label="Limón">6</div>
+  <div class="punto" style="top:64%; left: 69%;" data-id="7" tabindex="0" role="button" aria-describedby="descripcion" aria-label="Puntarenas">7</div>
+
+  <!-- Descripción desplegable: dentro de .mapa-container para posicionar -->
+  <section id="descripcion" aria-live="polite" tabindex="0"></section>
+</section>
+
+
+    <a href="index.html" class="boton-volver">Volver</a>
+
+    <footer class="centrado">
+      <h3 class="centrado formatospie">Derechos reservados Mario S.</h3>
+    </footer>
+
+    <script src="js/mapa_interactivo.js"></script><script>
+     console.log("Cargando JS mapa_interactivo...");
+    </script>
+<script src="js/mapa_interactivo.js"></script>ody>
+</html>
+

@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <title>Interfaz Web - Buscador de Empleados</title>
+    <meta charset="utf-8" />
+    <link href="imagenes/koala.png" rel="icon" />
+    <link href="css/index.css" rel="stylesheet" />
+    <!-- SweetAlert2 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+      /* Copia el CSS relevante para bannerweb, footer, botones y centrado */
+
+      body {
+        overflow-x: hidden;
+        font-family: Arial, sans-serif;
+        padding-bottom: 80px; /* espacio para footer */
+      }
+      .centrado {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+      .bannerweb {
+        background-image: url("imagenes/volcano.jpg");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        min-height: 60vh;
+        box-shadow: 4px 0 4px rgba(0,0,0,0.678), -4px 0 4px rgba(0,0,0,0.678);
+        background-color: rgba(26,6,6,0.486);
+        background-blend-mode: multiply;
+        color: white;
+        padding: 60px 20px;
+      }
+      .bajar2 {
+        padding-top: 20px;
+      }
+      button.botones {
+        margin-top: 15px;
+        padding: 10px 25px;
+        font-size: 18px;
+        border-radius: 24px;
+        border: 3px solid #070707;
+        background-color: #009345;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+      }
+      button.botones:hover {
+        background-color: #12cd53;
+      }
+      input.form-control {
+        width: 300px;
+        padding: 10px;
+        font-size: 18px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        margin-top: 15px;
+      }
+      #resultadoEmpleado {
+        margin-top: 25px;
+        font-size: 18px;
+        text-align: center;
+      }
+      #resultadoEmpleado img {
+        max-width: 200px;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        margin: 15px auto;
+        display: block;
+      }
+      footer.centrado {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #000;
+        color: white;
+        padding: 15px 0;
+        font-weight: bold;
+        text-align: center;
+        z-index: 1000;
+      }
+      .boton-volver {
+        margin: 20px auto;
+        display: block;
+        padding: 10px 25px;
+        font-size: 16px;
+        background-color: #009345;
+        color: white;
+        text-decoration: none;
+        border-radius: 24px;
+        border: 3px solid #070707;
+        width: fit-content;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+      }
+      .boton-volver:hover {
+        background-color: #12cd53;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <section class="centrado bannerweb">
+      <div class="centrado bajar2">
+        <h1>Retos de programación:</h1>
+        <h2>Buscador de Empleados</h2>
+      </div>
+    </section>
+
+    <section class="centrado" style="margin-top: 30px;">
+      <input
+        type="text"
+        id="cedula"
+        class="form-control"
+        placeholder="Ingrese número de cédula (ej. 109110338)"
+        aria-label="Número de cédula del empleado"
+      />
+      <button onclick="buscarEmpleado()" class="botones">Buscar</button>
+
+      <div id="resultadoEmpleado" aria-live="polite"></div>
+    </section>
+
+    <a href="index.html" class="boton-volver">Volver</a>
+
+    <footer class="centrado">
+      <h2 class="centrado formatospie">Derechos Reservados Mario S.</h2>
+    </footer>
+
+    <script>
+      const empleados = {
+        "109110338": {
+          nombre: "Juan",
+          apellidos: "Pérez",
+          lugar: "San José",
+          foto: "imagenes/juan.jpg"
+        },
+        "209110338": {
+          nombre: "María",
+          apellidos: "Gómez",
+          lugar: "Alajuela",
+          foto: "imagenes/maria.jpg"
+        },
+        "309110338": {
+          nombre: "Carlos",
+          apellidos: "Rodríguez",
+          lugar: "Cartago",
+          foto: "imagenes/carlos.jpg"
+        },
+        "409110338": {
+          nombre: "Ana",
+          apellidos: "López",
+          lugar: "Heredia",
+          foto: "imagenes/Ana.webp"
+        },
+        "509110338": {
+          nombre: "Luis",
+          apellidos: "Fernández",
+          lugar: "Limón",
+          foto: "imagenes/Luis.jpg"
+        }
+      };
+
+      function mostrarAlertaError(mensaje) {
+        Swal.fire({
+          title: "Error",
+          html: `
+            <iframe
+              src="https://lottie.host/embed/361dce4f-7dd0-47e9-9fdb-ac0c44caf48a/NbFBuF0ZSG.lottie"
+              width="320" height="240" frameborder="0" allowfullscreen>
+            </iframe>
+            <p>${mensaje}</p>
+          `,
+          confirmButtonText: "Intentar de nuevo",
+          confirmButtonColor: "#8b0000",
+          width: 350,
+          padding: "1em"
+        });
+      }
+
+      function buscarEmpleado() {
+        const cedula = document.getElementById("cedula").value.trim();
+        const resultadoDiv = document.getElementById("resultadoEmpleado");
+        resultadoDiv.innerHTML = "";
+
+        if (cedula === "") {
+          mostrarAlertaError("Debe ingresar un número de cédula.");
+          return;
+        }
+
+        if (empleados.hasOwnProperty(cedula)) {
+          const emp = empleados[cedula];
+          resultadoDiv.innerHTML = `
+            <h3>${emp.nombre} ${emp.apellidos}</h3>
+            <p><strong>Lugar:</strong> ${emp.lugar}</p>
+            <img src="${emp.foto}" alt="Foto de ${emp.nombre}" />
+          `;
+        } else {
+          resultadoDiv.innerHTML = `<p style="color:#b00000; font-weight:bold;">El usuario NO existe.</p>`;
+        }
+      }
+    </script>
+  </body>
+</html>

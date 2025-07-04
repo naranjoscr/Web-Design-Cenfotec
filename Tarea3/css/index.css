@@ -1,0 +1,443 @@
+
+body{
+        overflow-x: hidden;
+}
+
+*{
+    padding: 0px;
+    margin:0px;
+}
+.formatos1{
+    font-size: 30px;
+    color:#1570cd;
+    font-weight: bolder;
+}
+
+
+.bannerweb {
+    background-image: url("../imagenes/volcano.jpg");    
+    background-position: center;    
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 60vh;
+    box-shadow: 4px 0 4px rgba(0, 0, 0, 0.678), -4px 0 4px rgba(0, 0, 0, 0.678);
+    background-color: rgba(26, 6, 6, 0.486);
+    background-blend-mode: multiply;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.centrado{
+    text-align: center;
+}
+
+.bajar1{
+    padding-top: 150px;
+}
+.bajar2{
+    padding-top: 50px;
+}
+.bajar3{
+    padding-top: 30px;
+}
+
+h1{
+    color:#fff;    
+    font-size: 70px;
+}
+h2{
+    color:#fff;
+    font-size: 50px;
+}
+h3{
+    color:#000;
+    font-size: 40px;
+}
+.color1{
+    color:#fff;
+}
+p{
+    font-size: 20px;
+    /*superior/inferior  izq-dere*/
+    margin:40px 100px;
+    text-align: justify;
+}
+
+
+/*botones*/
+.botones {
+    width: auto;
+    border: 3px solid #070707;
+    cursor: pointer;
+    color: #fff;
+    background-color: #009345;
+    font-family: Arial;
+    font-size: 20px;
+    font-weight: bold;
+    /*espaciado*/
+    padding: 6px 35px;
+    /*quita subrayado*/
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #1570cd;
+    transition: all linear 0.2s;
+    /*forma del boton redondeado*/
+    border-radius: 24px;
+}
+
+.botones:hover {
+    width: 150px;
+    height: 30px;
+    background-color: #12cd53;
+    color: #efefef;
+    text-decoration: none;
+    font-size: 20px;
+    transition: all linear 0.2s;
+}
+
+/*formulario*/
+
+ .configform1{    
+    display: flex;
+    justify-content: center;    
+    color: #fff;    
+}
+.error{
+    border-color: red;
+}
+ label{
+    font-size: 24px;   
+    float: left;
+    margin:10px 20px 10px 20px;
+ }
+
+ /*controles input*/
+input{
+    display: block;
+    margin-top: 10px;
+}
+ .form-control{
+    font-size: 20px;   
+}
+
+footer{    
+    background-color: #000;
+    padding:20px 20px;
+}
+.formatospie{
+    color:#fff;
+    font-size: 24px;
+}
+
+/*lo pone a todo lo ancho*/
+video{
+    object-fit: cover;   
+}
+
+.menu-container {
+  background-color: #009345;
+  padding: 10px;
+  position: relative;
+}
+
+.menu-icon {
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+}
+
+.menu-container {
+  background-color: #009345;
+  padding: 10px;
+  position: relative;
+}
+
+.menu-icon {
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+}
+
+/* Side menu estilo Amazon */
+.menu-container {
+  position: relative;
+  z-index: 1100;
+}
+
+/* Icono hamburguesa */
+.menu-icon {
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  position: fixed;    
+  top: 30px;
+  left: 15px;
+  background-color: #009345;
+  padding: 8px 12px;
+  border-radius: 5px;
+  z-index: 1200;
+  user-select: none;
+  transition: background-color 0.3s ease;
+}
+
+.menu-icon:hover {
+  background-color: #12cd53;
+}
+
+/* Menú lateral oculto inicialmente */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh; /* toda la altura */
+  width: 0;      /* oculto */
+  background-color: #009345;
+  overflow-x: hidden;
+  transition: width 0.3s ease;
+  z-index: 1150;
+  padding-top: 120px; /* para separar del icono */
+}
+
+/* Cuando está abierto */
+.side-menu.open {
+  width: 250px;
+}
+
+/* Lista y enlaces del menú */
+.side-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.side-menu ul li a {
+  display: block;
+  padding: 12px 24px;
+  color: white;
+  text-decoration: none;
+  border-top: 1px solid #fff;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.side-menu ul li a:hover {
+  background-color: #12cd53;
+}
+
+.boton-volver {
+  position: fixed; 
+  bottom: 0%; 
+  right: 20px;  
+  z-index: 2000; 
+
+  width: 150px;
+  height: 30px;
+  border: 3px solid #070707;
+  cursor: pointer;
+  color: #fff;
+  background-color: #009345;
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 6px 35px;
+  text-decoration: none;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 24px;
+  transition: all linear 0.2s;
+}
+
+.boton-volver:hover {
+  background-color: #12cd53;
+  color: #efefef;}
+
+
+section form input[type="text"],
+section form input[type="number"] {
+  width: 300px;
+  font-size: 20px;
+  padding: 8px;
+}
+
+#facturaForm {
+  width: 800px;        
+  margin: 0 auto;        
+  padding: 20px;
+  background: #f0f0f0;   
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  width: 130px;        
+  font-weight: bold;
+}
+
+.form-group input {
+  flex: 1;                
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+form button {
+  width: auto; 
+  min-width: 150px; 
+  height: 40px;
+  border: 3px solid #070707;
+  cursor: pointer;
+  color: #fff;
+  background-color: #009345;
+  font-family: Arial, sans-serif;
+  font-size: 18px; 
+  font-weight: bold;
+  padding: 6px 20px; 
+  text-decoration: none;
+  border-radius: 24px;
+  transition: all linear 0.2s;
+  margin: 5px;
+  text-align: center; 
+  line-height: normal; 
+  white-space: nowrap; 
+}
+
+form button:hover {
+  background-color: #12cd53;
+  color: #efefef;
+}
+
+.doble-input {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.doble-input > div {
+  flex: 1 1 45%;
+}
+
+.resultado img {
+  max-width: 300px;
+  max-height: 200px;
+  margin-top: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  object-fit: cover;
+}
+
+.modal {
+  display: none;  /* oculto al cargar */
+  position: fixed;
+  z-index: 1000;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.6);
+
+  display: flex;           /* flex para centrar contenido */
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  position: relative;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 800px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+}
+
+.modal-content img {
+  max-width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.close {
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.3s ease;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+}
+
+.descripcion {
+  font-size: 18px;
+  text-align: left;
+  color: #333;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #000;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  z-index: 1001;
+  padding: 10px 0; /* más espacio arriba y abajo */
+  overflow: hidden;
+}
+
+footer h3 {
+  margin: 0; /* elimina margen por defecto de h3 */
+  font-size: 16px; /* ajusta tamaño a tu gusto */
+}
+
+#descripcion {
+  position: absolute;
+  max-width: 250px;
+  padding: 12px 15px;
+  border-radius: 10px;
+  background-color: #f0f0f0;
+  box-shadow: 0 0 8px rgba(0,0,0,0.15);
+  font-size: 16px;
+  display: none;
+  z-index: 1000;
+  pointer-events: auto;
+  margin: 0; /* Importante quitar margenes */
+}
+
+body {
+  padding-bottom: 60px; /* espacio para el footer fijo */
+  overflow-x: hidden;
+}
+
+input.form-control {
+  width: 400px;
+  max-width: 90vw; /* para que en móviles no se salga */
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-top: 15px;
+}

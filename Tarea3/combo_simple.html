@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <title>Interfaz Web</title>
+    <meta charset="utf-8">
+    <link href="imagenes/koala.png" rel="icon">      
+    <link href="css/index.css" rel="stylesheet">    
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      .bannerweb {
+        background-image: url("../imagenes/volcano.jpg");    
+        background-position: center;    
+        height: 60vh;
+        box-shadow: 4px 0 4px rgba(0, 0, 0, 0.678), -4px 0 4px rgba(0, 0, 0, 0.678);
+        background-color: rgba(26, 6, 6, 0.2);
+        background-blend-mode: multiply;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #fff; 
+        text-align: center;
+        text-shadow: 0 0 8px rgba(0,0,0,0.7);
+      }
+
+      footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #000;
+        color: white;
+        padding: 15px 0;
+        font-weight: bold;
+        text-align: center;
+        z-index: 9999 !important;
+      }
+
+      footer h3 {
+        margin: 0;
+        font-size: 16px;
+        color: white;
+      }
+
+      section {
+        padding-bottom: 60px; /* espacio para footer */
+      }
+    </style>
+  </head>  
+
+  <body>
+
+    <section class="centrado bannerweb">
+      <div class="centrado bajar2">
+        <h1>Retos de programación:</h1>
+      </div> 
+
+      <div class="centrado bajar2">
+        <h3 style="color: white;">Combo demostrativo simple</h3>
+        <select id="paisajeCombo" class="botones" onchange="mostrarImagen()" style="width: 280px;" autocomplete="off">
+          <option value="">Seleccione un paisaje</option>
+          <option value="cascada">Cascada</option>
+          <option value="playa">Playa</option>
+          <option value="montana">Montaña</option>
+        </select>
+      </div>
+    </section>  
+
+    <div id="modalPaisaje" class="modal" role="dialog" aria-modal="true" aria-labelledby="descripcionPaisaje">
+      <div class="modal-content">
+        <span class="close" onclick="cerrarModal()" aria-label="Cerrar">&times;</span>
+        <img id="imagenPaisaje" src="" alt="">
+        <div class="descripcion" id="descripcionPaisaje"></div>
+      </div>
+    </div>
+
+    <a href="index.html" class="boton-volver">Volver</a>
+
+    <footer>
+      <h3>Derechos reservados Mario S.</h3>
+    </footer>
+
+    <script>
+      window.onload = function() {
+        document.getElementById('paisajeCombo').blur();
+      };
+
+      function mostrarImagen() {
+        const combo = document.getElementById('paisajeCombo');
+        const seleccion = combo.value;
+        const modal = document.getElementById('modalPaisaje');
+        const imagen = document.getElementById('imagenPaisaje');
+        const descripcion = document.getElementById('descripcionPaisaje');
+
+        if (seleccion === "") {
+          cerrarModal();
+          return;
+        }
+
+        if (seleccion === "cascada") {
+          imagen.src = "imagenes/cascada.jpg";
+          imagen.alt = "Cascada";
+          descripcion.innerHTML = "<h3>Cascada</h3><p>Una cascada refrescante en medio del bosque tropical.</p>";
+        } else if (seleccion === "playa") {
+          imagen.src = "imagenes/playa.jpg";
+          imagen.alt = "Playa";
+          descripcion.innerHTML = "<h3>Playa</h3><p>Hermosa playa de arena blanca y mar azul cristalino.</p>";
+        } else if (seleccion === "montana") {
+          imagen.src = "imagenes/montana.jpg";
+          imagen.alt = "Montaña";
+          descripcion.innerHTML = "<h3>Montaña</h3><p>Imponente montaña que domina el horizonte.</p>";
+        }
+
+        modal.style.display = "flex";
+        combo.blur();
+      }
+
+      function cerrarModal() {
+        const modal = document.getElementById('modalPaisaje');
+        modal.style.display = "none";
+        document.getElementById('paisajeCombo').value = "";
+      }
+
+      window.onclick = function(event) {
+        const modal = document.getElementById('modalPaisaje');
+        if (event.target === modal) {
+          cerrarModal();
+        }
+      }
+    </script>
+
+  </body>
+</html>

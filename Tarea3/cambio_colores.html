@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <title>Interfaz Web</title>
+    <meta charset="utf-8">
+    <link href="imagenes/koala.png" rel="icon">      
+    <link href="css/index.css" rel="stylesheet">
+    <style>
+      /* Aquí pones los estilos específicos para el cambio de color */
+      .container {
+        max-width: 700px;
+        margin: 20px auto;
+        text-align: center;
+      }
+      .car-image {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 15px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      }
+      select {
+        padding: 10px;
+        font-size: 18px;
+        border-radius: 8px;
+        border: 2px solid #009345;
+        cursor: pointer;
+        width: 250px;
+        max-width: 90%;
+      }
+      footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #000;
+        color: white;
+        padding: 15px 0;
+        font-weight: bold;
+        text-align: center;
+        z-index: 1001;
+      }
+      section {
+        padding-bottom: 60px; /* para no quedar debajo del footer */
+      }
+    </style>
+  </head>  
+
+  <body>
+
+    <section class="centrado bannerweb">
+      <div class="centrado bajar2">
+          <h1>Retos de programacion:</h1>
+          <h2>Cambio de Colores</h2>
+      </div>      
+    </section>
+
+    <section class="container">
+      <img id="carro" class="car-image" src="imagenes/toyotarojo.png" alt="Toyota color rojo" />
+      <br />
+      <label for="colorSelect">Seleccione un color:</label><br />
+      <select id="colorSelect" aria-label="Selecciona el color del carro">
+        <option value="rojo" selected>Rojo</option>
+        <option value="blanco">Blanco</option>
+        <option value="negro">Negro</option>
+        <option value="gris">Gris</option>
+      </select>
+    </section>
+
+    <a href="index.html" class="boton-volver">Volver</a>
+
+    <footer class="centrado">            
+      <h3 class="centrado formatospie">Derechos reservados Mario S.</h3>
+    </footer>   
+
+    <script>
+      const select = document.getElementById('colorSelect');
+      const carro = document.getElementById('carro');
+      const imagenesCarro = {
+        rojo: 'imagenes/toyotarojo.png',
+        blanco: 'imagenes/toyotablanco.png',
+        negro: 'imagenes/toyotanegro.png',
+        gris: 'imagenes/toyotagris.png',
+      };
+
+      select.addEventListener('change', () => {
+        const color = select.value;
+        carro.src = imagenesCarro[color] || imagenesCarro['rojo'];
+        carro.alt = `Toyota color ${color}`;
+      });
+    </script>
+
+  </body>
+</html>

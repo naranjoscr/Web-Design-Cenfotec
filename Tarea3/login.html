@@ -1,0 +1,43 @@
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <title>Interfaz Web</title>
+      <meta charset="utf-8">
+      <link href="imagenes/koala.png" rel="icon">      
+      <link href="css/index.css" rel="stylesheet">    
+    </head>  
+
+    <body>
+
+      <section class="bannerweb configform1">
+        <form method="post">
+        <fieldset>
+          <legend><h3 class="color1">Log in</h3></legend>
+            <div class="centrado bajar3" style="display: flex; align-items: center; gap: 10px;">
+             <label for="in-txt-user" style="min-width: 100px;">Usuario:</label>
+             <input class="form-control" id="in-txt-user" type="text" placeholder="Ingrese su usuario">
+          </div>
+            <div class="centrado bajar3">
+              <label class="" for="in-txt-pass">Contraseña:</label>
+              <input class="form-control" id="in-txt-pass" type="password" placeholder="Ingrese su contraseña">
+           </div>          
+            <div class="centrado bajar3" style="display: flex; align-items: center; gap: 10px;">
+              <a class="btn btn-primary botones cursor" id="btn-login">Iniciar</a>
+          </div>
+        </div><br><br>     
+      </fieldset>
+      </form>
+      </section>
+      
+      <!-- programacion JS -->
+      <script src="js/login.js"></script>
+
+  <!-- cargar la libreria SWEET ALERT -->
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- cargar la libreria Lottiefiles -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.13/lottie.min.js"></script>
+      <script src="https://unpkg.com/@lottiefiles/lottie-player@0.3.0/dist/lottie-player.js"></script>
+      
+    </body>
+  </html>  

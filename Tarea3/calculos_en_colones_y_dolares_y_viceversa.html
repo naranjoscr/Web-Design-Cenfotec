@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <title>Conversión de divisas</title>
+  <meta charset="utf-8">
+  <link href="imagenes/koala.png" rel="icon">      
+  <link href="css/index.css" rel="stylesheet">    
+  <style>
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #000;
+      color: white;
+      padding: 15px 0;
+      font-weight: bold;
+      text-align: center;
+      z-index: 1000;
+    }
+
+    section {
+      padding-bottom: 60px; /* espacio para el footer */
+    }
+  </style>
+</head>  
+
+<body>
+
+  <section class="centrado bannerweb">
+    <div class="centrado bajar2">
+      <h1>Conversión de divisas</h1>
+      <h2>Colones y dólares</h2>
+    </div>      
+  </section>
+
+  <section class="centrado bajar2">
+    <form id="conversorForm">
+      <div class="form-group">
+        <label for="tipoCambio">Tipo de cambio (₡ a $):</label>
+        <input type="number" id="tipoCambio" min="0" step="0.01" required placeholder="Ej. 505" value="505">
+      </div>
+
+      <div class="form-group">
+        <label>Conversión:</label>
+        <div>
+          <input type="radio" name="conversion" value="c_to_d" checked> Colones a dólares
+          <input type="radio" name="conversion" value="d_to_c"> Dólares a colones
+        </div>
+      </div>
+
+      <div class="form-group doble-input">
+        <div>
+          <label for="colones">Colones (₡):</label>
+          <input type="number" id="colones" min="0" step="0.01" placeholder="Ingrese colones">
+        </div>
+
+        <div>
+          <label for="dolares">Dólares ($):</label>
+          <input type="number" id="dolares" min="0" step="0.01" placeholder="Ingrese dólares">
+        </div>
+      </div>
+
+      <button type="button" onclick="calcularConversion()">Calcular</button>
+      <button type="button" onclick="limpiarConversor()">Limpiar</button>
+    </form>
+
+    <section id="resultadoConversion" style="display:none; margin-top: 20px;">
+      <h3>Resultado</h3>
+      <p id="conversionResultado"></p>
+    </section>
+  </section>
+
+  <a href="index.html" class="boton-volver">Volver</a>
+
+  <footer>
+    <h2>Derechos Reservados Mario S.</h2>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="js/conversion.js"></script>
+
+</body>
+</html>

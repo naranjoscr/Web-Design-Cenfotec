@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <title>Interfaz Web</title>
+  <meta charset="utf-8">
+  <link href="imagenes/koala.png" rel="icon">      
+  <link href="css/index.css" rel="stylesheet">    
+</head>  
+
+<body>
+
+  <section class="centrado bannerweb">
+    <div class="centrado bajar2">
+      <h1>Retos de programación:</h1>
+      <h2>Factura</h2>
+    </div>      
+  </section>
+
+  <section class="centrado bajar2">
+    <form id="facturaForm">
+      <div class="form-group">
+        <label for="cliente">Nombre del cliente:</label>
+        <input type="text" id="cliente" required>
+      </div>
+
+      <div class="form-group">
+        <label for="articulo">Artículo comprado:</label>
+        <input type="text" id="articulo" required>
+      </div>
+
+      <div class="form-group">
+        <label for="cantidad">Cantidad:</label>
+        <input type="number" id="cantidad" min="1" required>
+      </div>
+
+      <div class="form-group">
+        <label for="precio">Precio (₡):</label>
+        <input type="number" id="precio" min="0" step="0.01" required>
+      </div>
+
+      <button type="button" onclick="generarFactura()">Generar factura</button>
+      <button type="button" onclick="limpiarFormulario()">Limpiar datos</button>
+    </form>
+  </section>
+
+  <section class="centrado bajar2" id="resultado" style="display:none;">
+    <h3>Factura generada</h3>
+    <p><strong>Nombre del cliente:</strong> <span id="rCliente"></span></p>
+    <p><strong>Artículo comprado:</strong> <span id="rArticulo"></span></p>
+    <p><strong>Cantidad:</strong> <span id="rCantidad"></span></p>
+    <p><strong>Precio unitario:</strong> ₡<span id="rPrecio"></span></p>
+    <p><strong>Subtotal:</strong> ₡<span id="rSubtotal"></span></p>
+    <p><strong>IVA (13%):</strong> ₡<span id="rIVA"></span></p>
+    <p><strong>Servicio (5%):</strong> ₡<span id="rServicio"></span></p>
+    <p><strong>Total a pagar:</strong> ₡<span id="rTotal"></span></p>
+  </section>
+
+  <!-- Botón volver -->
+  <a href="index.html" class="boton-volver">Volver</a>
+
+  <!-- cargar la libreria SWEET ALERT -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- cargar la libreria Lottiefiles -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+  <!-- cargar tu JS de validación -->
+  <script src="js/validacion_factura.js"></script>
+
+</body>
+</html>

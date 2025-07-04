@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Interfaz Turismo</title>
+  <link href="imagenes/koala.png" rel="icon">      
+  <link href="css/index.css" rel="stylesheet">    
+
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <style>
+    .resultado {
+      margin-top: 30px;
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 10px;
+      display: none;
+      text-align: center;
+    }
+
+    .resultado img {
+      max-width: 300px;
+      margin-top: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+
+    select, button {
+      width: 280px;
+      height: 40px;
+      border: 2px solid #070707;
+      border-radius: 10px;
+      font-size: 18px;
+      margin: 10px;
+      cursor: pointer;
+    }
+
+    button {
+      background-color: #009345;
+      color: white;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #12cd53;
+    }
+
+    .cuotas {
+      margin-top: 15px;
+      font-size: 18px;
+      color: #333;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #000;
+      color: white;
+      padding: 15px 0;
+      font-weight: bold;
+      text-align: center;
+      z-index: 1000;
+    }
+
+    section {
+      padding-bottom: 60px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <section class="centrado bannerweb">
+    <div class="centrado bajar2">
+      <h1>Paquetes turísticos</h1>
+      <h2>Seleccione su paquete</h2>
+    </div>   
+
+    <div class="centrado bajar2">
+      <select id="paquete">
+        <option value="">Seleccione un paquete</option>
+        <option value="conoce">Paquete Conoce</option>
+        <option value="todas">Paquete En Todas</option>
+        <option value="vip">Paquete Pura Vida VIP</option>
+      </select>
+
+      <button onclick="mostrarPaquete()">Ver detalles</button>
+    </div>
+
+    <div class="resultado" id="resultado">
+      <h3 id="paqueteTitulo"></h3>
+      <p id="paqueteDescripcion"></p>
+      <h4 id="paquetePrecio"></h4>
+      <div class="cuotas" id="paqueteCuotas"></div>
+      <img id="paqueteImagen" src="" alt="">
+    </div>
+  </section>  
+
+  <a href="index.html" class="boton-volver">Volver</a>
+
+  <footer>
+    <h2>Derechos Reservados Mario S.</h2>
+  </footer>
+
+  <script>
+    function validation_alert(ptext) {
+      Swal.fire({
+        title: "Verificar la selección",
+        html: `
+          <iframe 
+            width="320" 
+            height="240" 
+            frameborder="0" 
+            src="https://lottie.host/embed/361dce4f-7dd0-47e9-9fdb-ac0c44caf48a/NbFBuF0ZSG.lottie">
+          </iframe>
+          <br>
+          <p>${ptext}</p>
+        `,
+        confirmButtonText: "Intentar de nuevo",
+        confirmButtonColor: "#8b0000"
+      });
+    }
+
+    function mostrarPaquete() {
+      const seleccion = document.getElementById('paquete').value;
+      const resultado = document.getElementById('resultado');
+      const titulo = document.getElementById('paqueteTitulo');
+      const descripcion = document.getElementById('paqueteDescripcion');
+      const precio = document.getElementById('paquetePrecio');
+      const cuotas = document.getElementById('paqueteCuotas');
+      const imagen = document.getElementById('paqueteImagen');
+
+      let precioNum = 0;
+
+      if (seleccion === "") {
+        validation_alert("Por favor seleccione un paquete antes de continuar.");
+        resultado.style.display = "none";
+        return;
+      }
+
+      if (seleccion === "conoce") {
+        titulo.innerHTML = "Paquete Conoce";
+        descripcion.innerHTML = "Incluye tour de un día por los principales destinos turísticos de la capital.";
+        precioNum = 100;
+        precio.innerHTML = "Precio: $100";
+        imagen.src = "imagenes/conoce.png";
+        imagen.alt = "Paquete Conoce";
+      } else if (seleccion === "todas") {
+        titulo.innerHTML = "Paquete En Todas";
+        descripcion.innerHTML = "Incluye recomendaciones personalizadas y soporte, un itinerario para conocer el país durante 3 días.";
+        precioNum = 150;
+        precio.innerHTML = "Precio: $150";
+        imagen.src = "imagenes/todas.jpg";
+        imagen.alt = "Paquete En Todas";
+      } else if (seleccion === "vip") {
+        titulo.innerHTML = "Paquete Pura Vida VIP";
+        descripcion.innerHTML = "Incluye hospedaje 5 estrellas, transporte privado y tours exclusivos a los mejores lugares del país durante 5 días.";
+        precioNum = 1000;
+        precio.innerHTML = "Precio: $1000";
+        imagen.src = "imagenes/vip.jpg";
+        imagen.alt = "Paquete Pura Vida VIP";
+      }
+
+      const cuota3 = (precioNum / 3).toFixed(2);
+      const cuota6 = (precioNum / 6).toFixed(2);
+      const cuota12 = (precioNum / 12).toFixed(2);
+
+      cuotas.innerHTML = `
+        <strong>Opciones de pago a crédito:</strong><br>
+        3 meses: $${cuota3} por mes<br>
+        6 meses: $${cuota6} por mes<br>
+        12 meses: $${cuota12} por mes
+      `;
+
+      resultado.style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
