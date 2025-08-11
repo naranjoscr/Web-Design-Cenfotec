@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Galería - Perezosos Pura Vida</title>
+
+  <link href="css/index.css" rel="stylesheet" />
+  <!-- GLightbox CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet" />
+
+  <style>
+    /* Estilos para galería y buscadores sin afectar header/footer */
+    :root {
+      --accent: #28a745;
+      --dark: rgba(0,0,0,0.58);
+      --panel: rgba(255,255,255,0.92);
+    }
+
+    /* Mantener legibilidad */
+    main {
+      max-width: 1100px;
+      margin: 40px auto;
+      background: rgba(255,255,255,0.95);
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      padding: 24px 28px;
+      color: #222;
+      position: relative;
+      z-index: 1;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr 220px;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    @media (max-width:800px){
+      .controls { grid-template-columns: 1fr; }
+    }
+
+    .search-box input, .category-select select, .search-videos {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid #cfcfcf;
+      font-size: 0.95rem;
+      box-sizing: border-box;
+    }
+
+    label.meta {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      display: block;
+      color: #004d00;
+    }
+
+    h2.section-title{
+      color: #074d14;
+      margin: 18px 0 10px;
+      font-size: 1.3rem;
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(140px,1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .gallery-grid a {
+      display:block;
+      border-radius:8px;
+      overflow:hidden;
+      background: #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      text-decoration:none;
+      color: inherit;
+      position: relative;
+    }
+
+    .gallery-grid img {
+      display:block;
+      width:100%;
+      height:120px;
+      object-fit:cover;
+      transition: transform 0.3s ease;
+      border-radius: 8px;
+    }
+
+    .gallery-grid a:hover img {
+      transform: scale(1.05);
+    }
+
+    /* video thumb overlay */
+    .video-thumb::after{
+      content: "▶";
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:36px;
+      color: rgba(255,255,255,0.95);
+      text-shadow: 0 3px 10px rgba(0,0,0,0.6);
+      pointer-events:none;
+      border-radius: 8px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header>
+  <nav class="menu-container">
+    <div class="menu-icon" onclick="toggleMenu()" aria-label="Abrir menú" role="button" tabindex="0">&#9776;</div>
+    <div id="side-menu" class="side-menu" aria-hidden="true">
+      <ul>
+        <li><a href="nosotros.html">Sobre nosotros</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="galeria.html">Galería interactiva</a></li>
+        <li><a href="suscripcion.html">Suscripción</a></li>
+        <li><a href="mapa_interactivo.html">Descubra Costa Rica</a></li>
+        <li><a href="encuesta.html">Votación de la comunidad</a></li>
+        <li><a href="galeria.html">Galería de vida silvestre</a></li>
+        <li><a href="testimonios.html">Testimonios</a></li>
+        <li><a href="recursos_externos.html">Recursos externos</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <!-- CONTROLES: buscador + dropdown categorías para imágenes -->
+  <div class="controls">
+    <div class="search-box">
+      <label for="search-images" class="meta">Buscar imágenes</label>
+      <input type="search" id="search-images" placeholder="Buscar por título (ej. 'arroz', 'gallo')" aria-label="Buscar imágenes">
+    </div>
+
+    <div class="category-select">
+      <label for="category-select" class="meta">Filtrar por categoría</label>
+      <select id="category-select" aria-label="Seleccionar categoría">
+        <option value="">— Todas las categorías —</option>
+        <option value="desayuno">Desayuno</option>
+        <option value="mariscos">Mariscos</option>
+        <option value="arroz">Arroz</option>
+        <option value="platos_clasicos">Platos clásicos</option>
+        <option value="sopas">Sopas</option>
+        <option value="aperitivos">Aperitivos</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- GALERÍA DE IMÁGENES -->
+  <section aria-label="Galería de imágenes de platos típicos">
+    <h2 class="section-title">Galería de Imágenes</h2>
+    <div id="gallery-images" class="gallery-grid">
+      <a href="imagenes/arrozconpollo.jpg" class="glightbox" data-title="Arroz con Pollo" data-cat="arroz">
+        <img src="imagenes/arrozconpollo.jpg" alt="Arroz con Pollo">
+      </a>
+
+      <a href="imagenes/casadotradicional.jpg" class="glightbox" data-title="Casado Tradicional" data-cat="platos_clasicos">
+        <img src="imagenes/casadotradicional.jpg" alt="Casado Tradicional">
+      </a>
+
+      <a href="imagenes/ceviche.jpg" class="glightbox" data-title="Ceviche" data-cat="mariscos">
+        <img src="imagenes/ceviche.jpg" alt="Ceviche">
+      </a>
+
+      <a href="imagenes/gallopinto.jpg" class="glightbox" data-title="Gallo Pinto" data-cat="desayuno">
+        <img src="imagenes/gallopinto.jpg" alt="Gallo Pinto">
+      </a>
+
+      <a href="imagenes/olladecarne.webp" class="glightbox" data-title="Olla de Carne" data-cat="sopas">
+        <img src="imagenes/olladecarne.webp" alt="Olla de Carne">
+      </a>
+
+      <a href="imagenes/tamales.webp" class="glightbox" data-title="Tamales" data-cat="platos_clasicos">
+        <img src="imagenes/tamales.webp" alt="Tamales">
+      </a>
+
+      <a href="imagenes/chifrijo.jpg" class="glightbox" data-title="Chifrijo" data-cat="aperitivos">
+        <img src="imagenes/chifrijo.jpg" alt="Chifrijo">
+      </a>
+
+      <a href="imagenes/patacones.jpg" class="glightbox" data-title="Patacones" data-cat="aperitivos">
+        <img src="imagenes/patacones.jpg" alt="Patacones">
+      </a>
+
+      <a href="imagenes/arrozconcamarones.jpg" class="glightbox" data-title="Arroz con Camarones" data-cat="mariscos">
+        <img src="imagenes/arrozconcamarones.jpg" alt="Arroz con Camarones">
+      </a>
+
+      <a href="imagenes/sopanegra.jpg" class="glightbox" data-title="Sopa Negra" data-cat="sopas">
+        <img src="imagenes/sopanegra.jpg" alt="Sopa Negra">
+      </a>
+    </div>
+  </section>
+
+  <!-- CONTROLES VIDEO (buscador de videos) -->
+  <div style="margin-top:20px;">
+    <label for="search-videos" class="meta">Buscar videos</label>
+    <input id="search-videos" class="search-videos" type="search" placeholder="Buscar videos por título..." aria-label="Buscar videos" style="width:100%; padding:10px; border-radius:8px; border:1px solid #ddd;">
+  </div>
+
+  <!-- GALERÍA DE VIDEOS -->
+  <section aria-label="Galería de videos de platos típicos" style="margin-top:14px;">
+    <h2 class="section-title">Galería de Videos</h2>
+    <div id="gallery-videos" class="gallery-grid">
+      <a href="https://www.youtube.com/watch?v=VbfpW0pbvaU" class="glightbox video-thumb" data-title="Serpientes de Costa Rica" data-type="video">
+        <img src="imagenes/serpiente.jpg" alt="Video Gallo Pinto">
+      </a>
+
+      <a href="https://www.youtube.com/watch?v=IO7sNLrQifQ" class="glightbox video-thumb" data-title="Video receta: Casado Tradicional" data-type="video">
+        <img src="imagenes/felinos.jpg" alt="Felinos de Costa Rica">
+      </a>
+
+      <a href="https://www.youtube.com/watch?v=5qap5aO4i9A" class="glightbox video-thumb" data-title="Monos de Costa Rica" data-type="video">
+        <img src="imagenes/mono.jpg" alt="Video Tamales">
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer style="display: flex; align-items: center; padding: 10px;">
+  <button class="boton-volver" onclick="window.location.href='index.html'">
+    Volver
+  </button>
+  <span style="flex: 1; text-align: center;">
+    &copy; 2025 Perezosos Pura Vida - Todos los derechos reservados.
+  </span>
+</footer>
+
+<!-- GLightbox JS -->
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+
+<script>
+  // Inicializar GLightbox para imágenes y videos
+  const lightbox = GLightbox({ selector: '.glightbox' });
+
+  // Función toggle menú lateral (igual que en plantilla original)
+  function toggleMenu() {
+    const menu = document.getElementById('side-menu');
+    const isOpen = menu.classList.toggle('open');
+    menu.setAttribute('aria-hidden', !isOpen);
+  }
+
+  // Cerrar menú si clic fuera
+  document.addEventListener('click', (e) => {
+    const menu = document.getElementById('side-menu');
+    const menuIcon = document.querySelector('.menu-icon');
+    if(menu.classList.contains('open') && !menu.contains(e.target) && !menuIcon.contains(e.target)) {
+      menu.classList.remove('open');
+      menu.setAttribute('aria-hidden', 'true');
+    }
+  });
+
+  // Filtrado imágenes por texto + categoría
+  const searchImages = document.getElementById('search-images');
+  const categorySelect = document.getElementById('category-select');
+  const galleryImages = document.getElementById('gallery-images');
+
+  function filterImages() {
+    const q = (searchImages.value || '').trim().toLowerCase();
+    const cat = (categorySelect.value || '').trim();
+    const items = galleryImages.querySelectorAll('a');
+
+    items.forEach(a => {
+      const title = (a.getAttribute('data-title') || '').toLowerCase();
+      const itemCat = (a.getAttribute('data-cat') || '').toLowerCase();
+
+      const matchText = q === '' || title.includes(q);
+      const matchCat = !cat || itemCat === cat;
+
+      a.style.display = (matchText && matchCat) ? '' : 'none';
+    });
+  }
+
+  searchImages.addEventListener('input', filterImages);
+  categorySelect.addEventListener('change', filterImages);
+
+  // Filtrado videos por texto
+  const searchVideos = document.getElementById('search-videos');
+  const galleryVideos = document.getElementById('gallery-videos');
+
+  function filterVideos() {
+    const q = (searchVideos.value || '').trim().toLowerCase();
+    const items = galleryVideos.querySelectorAll('a');
+    items.forEach(a => {
+      const title = (a.getAttribute('data-title') || '').toLowerCase();
+      a.style.display = (q === '' || title.includes(q)) ? '' : 'none';
+    });
+  }
+  searchVideos.addEventListener('input', filterVideos);
+
+  // Accesibilidad: abrir primera imagen o video visible con Enter en input buscar
+  searchImages.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const first = galleryImages.querySelector('a:not([style*="display: none"])');
+      if (first) first.click();
+    }
+  });
+  searchVideos.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const first = galleryVideos.querySelector('a:not([style*="display: none"])');
+      if (first) first.click();
+    }
+  });
+</script>
+
+</body>
+</html>

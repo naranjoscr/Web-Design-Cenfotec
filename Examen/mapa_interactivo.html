@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <title>Interfaz Web</title>
+    <meta charset="utf-8" />
+    <link href="imagenes/koala.png" rel="icon" />      
+    <link href="css/index.css" rel="stylesheet" />    
+    <style>
+      /* Estilo general para esta página */
+      section {
+        padding-bottom: 60px; /* espacio para no quedar oculto bajo el footer */
+      }
+
+      .mapa-container {
+        position: relative;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .mapa-container img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 10px;
+      }
+
+      /* Puntos interactivos */
+      .punto {
+        position: absolute;
+        background-color: #009345;
+        color: white;
+        font-weight: bold;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+        cursor: pointer;
+        user-select: none;
+        box-shadow: 0 0 6px rgba(0,0,0,0.5);
+        transition: background-color 0.3s ease;
+      }
+
+      .punto:hover,
+      .punto:focus {
+        background-color: #12cd53;
+        outline: none;
+      }
+
+      /* Descripción desplegable */
+      #descripcion {
+        max-width: 900px;
+        margin: 20px auto;
+        padding: 15px;
+        border-radius: 10px;
+        background-color: #f0f0f0;
+        box-shadow: 0 0 8px rgba(0,0,0,0.15);
+        font-size: 18px;
+        display: none;
+      }
+
+      footer .boton-volver {
+        background-color: #28a745;
+        border: none;
+        border-radius: 6px;
+        color: white;
+        padding: 10px 18px;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.3s ease;
+        flex-shrink: 0;
+      }
+
+        footer .boton-volver:hover {
+            background-color: #1b6b1b;
+        }
+
+
+    </style>
+  </head>
+
+  <header>
+  <nav class="menu-container">
+    <div class="menu-icon" onclick="toggleMenu()" aria-label="Abrir menú" role="button" tabindex="0">&#9776;</div>
+    <div id="side-menu" class="side-menu" aria-hidden="true">
+      <ul>
+        <li><a href="nosotros.html">Sobre nosotros</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="galeria.html">Galería interactiva</a></li>
+        <li><a href="suscripcion.html">Suscripción</a></li>
+        <li><a href="mapa_interactivo.html">Descubra Costa Rica</a></li>
+        <li><a href="encuesta.html">Votación de la comunidad</a></li>
+        <li><a href="galeria.html">Galería de vida silvestre</a></li>
+        <li><a href="testimonios.html">Testimonios</a></li>
+        <li><a href="recursos_externos.html">Recursos externos</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+  <body>
+    <section class="bannerwebb" aria-label="Encabezado con imagen de fondo">
+      <div class="content">
+        <h1>Mapa Interactivo</h1>
+      </div>
+    </section>
+
+    <section class="mapa-container" aria-label="Mapa interactivo con puntos seleccionables">
+      <img src="imagenes/mapa.jpg" alt="Mapa interactivo de Costa Rica con provincias y puntos" />
+
+      <!-- Puntos numerados -->
+      <div class="punto" style="top: 46%; left: 50%;" data-id="1" tabindex="0" role="button" aria-describedby="descripcion" aria-label="San José">1</div>
+      <div class="punto" style="top: 23%; left: 45%;" data-id="2" tabindex="0" role="button" aria-describedby="descripcion" aria-label="Alajuela">2</div>
+      <div class="punto" style="top: 43%; left: 60%;" data-id="3" tabindex="0" role="button" aria-describedby="descripcion" aria-label="Cartago">3</div>
+      <div class="punto" style="top: 27%; left: 55%;" data-id="4" tabindex="0" role="button" aria-describedby="descripcion" aria-label="Heredia">4</div>
+      <div class="punto" style="top: 27%; left: 30%;" data-id="5" tabindex="0" role="button" aria-describedby="descripcion" aria-label="Guanacaste">5</div>
+      <div class="punto" style="top: 46%; left: 70%;" data-id="6" tabindex="0" role="button" aria-describedby="descripcion" aria-label="Limón">6</div>
+      <div class="punto" style="top:64%; left: 69%;" data-id="7" tabindex="0" role="button" aria-describedby="descripcion" aria-label="Puntarenas">7</div>
+
+      <!-- Descripción desplegable: dentro de .mapa-container para posicionar -->
+      <section id="descripcion" aria-live="polite" tabindex="0"></section>
+    </section>
+
+  <footer>
+    <button class="boton-volver" onclick="window.location.href='index.html'">Volver</button>
+    <span>&copy; 2025 Perezosos Pura Vida - Todos los derechos reservados.</span>
+  </footer>
+
+    <script src="js/mapa_interactivo.js"></script>
+    <script src="js/menu.js"></script>
+    <script>
+      console.log("Cargando JS mapa_interactivo...");
+    </script>
+  </body>
+</html>

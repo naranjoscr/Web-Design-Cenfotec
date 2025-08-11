@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Encuesta de Satisfacción - Perezosos Pura Vida</title>
+  <link href="css/index.css" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #f2f2f2, #d1e8e4);
+      margin: 0;
+      min-height: 100vh;
+      padding-top: 60px;
+      padding-bottom: 70px;
+      color: #004d00;
+    }
+
+    .encuesta-form {
+      background-image: url('imagenes/volcano.jpg');
+      background-size: cover;
+      background-position: center;
+      width: 100%;
+      max-width: 600px;
+      margin: 90px auto 0 auto;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      backdrop-filter: blur(5px);
+      background-color: rgba(0, 77, 0, 0.7);
+      color: white;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .encuesta-form h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-weight: bold;
+      font-size: 2rem;
+      text-shadow: 1px 1px 3px #0a310a;
+    }
+
+    label {
+      font-weight: 600;
+      margin-bottom: 8px;
+      display: block;
+      color: white;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #66bb6a;
+      margin-bottom: 20px;
+      font-size: 1rem;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .star-rating {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .star-rating input {
+      display: none;
+    }
+
+    .star-rating label {
+      font-size: 2rem;
+      color: #ccc;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .star-rating input:checked ~ label,
+    .star-rating label:hover,
+    .star-rating label:hover ~ label {
+      color: gold;
+    }
+
+    button {
+      background-color: #28a745;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      padding: 14px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #1b6b1b;
+    }
+
+    .mensaje {
+      margin-top: 20px;
+      text-align: center;
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <nav class="menu-container">
+    <div class="menu-icon" onclick="toggleMenu()" aria-label="Abrir menú" role="button" tabindex="0">&#9776;</div>
+    <div id="side-menu" class="side-menu" aria-hidden="true">
+      <ul>
+        <li><a href="nosotros.html">Sobre nosotros</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="galeria.html">Galería interactiva</a></li>
+        <li><a href="suscripcion.html">Suscripción</a></li>
+        <li><a href="mapa_interactivo.html">Descubra Costa Rica</a></li>
+        <li><a href="encuesta.html">Votación de la comunidad</a></li>
+        <li><a href="galeria.html">Galería de vida silvestre</a></li>
+        <li><a href="testimonios.html">Testimonios</a></li>
+        <li><a href="recursos_externos.html">Recursos externos</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<footer style="display: flex; align-items: center; padding: 10px;">
+  <button onclick="window.location.href='index.html'" style="padding: 5px 10px; cursor: pointer;">
+    Volver
+  </button>
+  <span style="flex: 1; text-align: center;">
+    &copy; 2025 Perezosos Pura Vida - Todos los derechos reservados.
+  </span>
+</footer>
+
+<!-- EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  (function() {
+    emailjs.init("TU_PUBLIC_KEY"); // Reemplaza con tu Public Key
+  })();
+
+  const form = document.getElementById('encuesta-form');
+  const mensajeDiv = document.getElementById('mensaje');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    emailjs.sendForm('TU_SERVICE_ID', 'TU_TEMPLATE_ID', this)
+      .then(() => {
+        mensajeDiv.style.color = '#2a7a2a';
+        mensajeDiv.textContent = '✅ ¡Gracias por tu opinión!';
+        form.reset();
+      }, (error) => {
+        mensajeDiv.style.color = '#a42828';
+        mensajeDiv.textContent = '❌ Hubo un error al enviar la encuesta. Inténtalo de nuevo.';
+        console.error('EmailJS error:', error);
+      });
+  });
+
+  function toggleMenu() {
+    const menu = document.getElementById('side-menu');
+    const isOpen = menu.classList.toggle('open');
+    menu.setAttribute('aria-hidden', !isOpen);
+  }
+
+  document.addEventListener('click', (e) => {
+    const menu = document.getElementById('side-menu');
+    const menuIcon = document.querySelector('.menu-icon');
+    if(menu.classList.contains('open') && !menu.contains(e.target) && !menuIcon.contains(e.target)) {
+      menu.classList.remove('open');
+      menu.setAttribute('aria-hidden', 'true');
+    }
+  });
+</script>
+
+</body>
+</html>
