@@ -1,0 +1,483 @@
+  <!DOCTYPE html>
+  <html lang="es">
+  <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agencia de Tours Interactiva</title>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    /* Estilos generales */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f0f8f5;
+      color: #388e3c;
+      padding-top: 60px;
+      padding-bottom: 60px;
+      position: relative;
+    }
+    h1 {
+      color: #388e3c;
+    }
+    input, select, button {
+      font-size: 1rem;
+      padding: 6px 10px;
+      margin: 8px 0;
+      border-radius: 5px;
+      border: 1px solid #aaa;
+    }
+    button {
+      cursor: pointer;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+    }
+    button:hover {
+      background-color: #388e3c;
+    }
+    #results > div {
+      background: white;
+      margin: 10px 0;
+      padding: 12px 18px;
+      border-radius: 8px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .fav-button {
+      font-size: 1.5rem;
+      background: none;
+      color: #ccc;
+      border: none;
+      cursor: pointer;
+      flex-shrink: 0;
+      user-select: none;
+      transition: color 0.3s ease;
+    }
+    .fav-button.favorito {
+      color: gold;
+    }
+    .info-btn {
+      background-color: #4caf50;
+      color: white;
+      border-radius: 5px;
+      padding: 5px 10px;
+      font-size: 0.9rem;
+      user-select: none;
+    }
+    .info-btn:hover {
+      background-color: #388e3c;
+    }
+    .more-info {
+      margin-top: 8px;
+      background: #e7f3e9;
+      padding: 10px 15px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      color: #1b3b15;
+    }
+    .more-info a {
+      color: #388e3c;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .more-info a:hover {
+      text-decoration: underline;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #004d00;
+      color: white;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      z-index: 1000;
+      padding: 0 15px;
+      box-sizing: border-box;
+    }
+    .menu-container {
+      width: 100%;
+      display: flex;
+      align-items: center;
+    }
+    .menu-icon {
+      font-size: 28px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .side-menu {
+      position: fixed;
+      top: 50px;
+      left: -250px;
+      width: 220px;
+      height: 100vh;
+      background: #1b4d20;
+      color: white;
+      padding-top: 20px;
+      box-sizing: border-box;
+      transition: left 0.3s ease;
+      z-index: 999;
+      overflow-y: auto;
+    }
+    .side-menu.open {
+      left: 0;
+    }
+    .side-menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .side-menu ul li {
+      margin: 10px 0;
+    }
+    .side-menu ul li a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      display: block;
+      transition: background 0.2s;
+    }
+    .side-menu ul li a:hover,
+    .side-menu ul li a:focus {
+      background: #1b4d20;
+      outline: none;
+    }
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #333;
+      color: white;
+      display: flex;
+      align-items: center;
+      padding: 5px 5;
+      box-sizing: border-box;
+      z-index: 1000;
+    }
+    footer button {
+      background-color: #4caf50;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      padding: 5px 10px;
+      cursor: pointer;
+      margin-right: 15px;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+    footer button:hover {
+      background-color: #388e3c;
+    }
+    footer span {
+      flex: 1;
+      text-align: center;
+      font-size: 1rem;
+    }
+  </style>
+  </head>
+  <body>
+
+  <header>
+    <nav class="menu-container">
+      <div class="menu-icon" onclick="toggleMenu()" aria-label="Abrir menú" role="button" tabindex="0">&#9776;</div>
+      <div id="side-menu" class="side-menu" aria-hidden="true">
+        <ul>
+          <li><a href="nosotros.html">Sobre nosotros</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+          <li><a href="galeria.html">Galería interactiva</a></li>
+          <li><a href="suscripcion.html">Suscripción</a></li>
+          <li><a href="mapa_interactivo.html">Descubra Costa Rica</a></li>
+          <li><a href="encuesta.html">Votación de la comunidad</a></li>
+          <li><a href="testimonios.html">Testimonios</a></li>
+          <li><a href="recursos_externos.html">Recursos externos</a></li>
+          <li><a href="app.html">Buscadao de Tours</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Buscador de Tours</h1>
+
+    <!-- 6. Controles de formulario programados -->
+    <label for="tourName">Nombre del tour:</label><br />
+    <input type="text" id="tourName" placeholder="Ej: Volcán" />
+
+    <br />
+
+    <label for="priceMin">Precio mínimo ($):</label>
+    <input type="number" id="priceMin" min="0" placeholder="0" />
+
+    <label for="priceMax">Precio máximo ($):</label>
+    <input type="number" id="priceMax" min="0" placeholder="1000" />
+
+    <br />
+
+    <label for="durationSelect">Duración:</label>
+    <select id="durationSelect">
+      <option value="">-- Todos --</option>
+      <option value="Corta">Corta</option>
+      <option value="Media">Media</option>
+      <option value="Larga">Larga</option>
+    </select>
+
+    <br />
+
+    <button id="searchBtn">Buscar Tours</button>
+    <button id="downloadHistoryBtn">Historial</button>
+    <button id="downloadManualBtn">Manual</button>
+
+    <h2>Resultados</h2>
+    <div id="results" aria-live="polite" aria-atomic="true"></div>
+  </main>
+
+  <footer>
+    <button onclick="window.location.href='index.html'">Volver</button>
+    <span>&copy; 2025 Perezosos Pura Vida - Todos los derechos reservados.</span>
+  </footer>
+
+  <script>
+    // 1. Programación JS (funciones, operadores, condicionales, ciclos, arreglos)
+    // 2. Eventos y métodos de programación
+    // 8. Uso de programación JSON y LOCALSTORAGE
+
+    function toggleMenu() {
+      const menu = document.getElementById('side-menu');
+      const isOpen = menu.classList.toggle('open');
+      menu.setAttribute('aria-hidden', !isOpen);
+    }
+
+    document.addEventListener('click', (e) => {
+      const menu = document.getElementById('side-menu');
+      const menuIcon = document.querySelector('.menu-icon');
+      if(menu.classList.contains('open') && !menu.contains(e.target) && !menuIcon.contains(e.target)) {
+        menu.classList.remove('open');
+        menu.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    // 10. Base de datos JSON
+    const tours = [
+      {id:1, name:"Tour Volcán Arenal", price:120, duration:"Media", desc:"Explora el majestuoso Volcán Arenal y sus aguas termales."},
+      {id:2, name:"Tour Playa Tamarindo", price:90, duration:"Corta", desc:"Disfruta del sol y las olas en la hermosa playa Tamarindo."},
+      {id:3, name:"Tour Monteverde", price:150, duration:"Larga", desc:"Descubre la biodiversidad única del bosque nuboso en Monteverde."},
+      {id:4, name:"Tour Río Celeste", price:110, duration:"Media", desc:"Visita el impresionante río con aguas turquesa en el Parque Tenorio."},
+      {id:5, name:"Tour Cultura y Café", price:80, duration:"Corta", desc:"Aprende sobre la cultura local y disfruta de un tour de café."},
+      {id:6, name:"Tour Parque Nacional Manuel Antonio", price:130, duration:"Media", desc:"Observa la fauna y flora en el Parque Nacional Manuel Antonio."},
+      {id:7, name:"Tour Cascadas La Fortuna", price:100, duration:"Corta", desc:"Admira las hermosas cascadas y disfruta de la naturaleza exuberante."},
+      {id:8, name:"Tour Snorkel en Isla del Caño", price:180, duration:"Larga", desc:"Explora el mundo submarino con snorkel en Isla del Caño."},
+      {id:9, name:"Tour Senderismo en Parque Braulio Carrillo", price:140, duration:"Media", desc:"Recorre senderos llenos de vida silvestre en el parque Braulio Carrillo."},
+      {id:10, name:"Tour Aventura en Canopy", price:95, duration:"Corta", desc:"Siente la adrenalina con tirolesas y aventura en la copa de los árboles."},
+      {id:11, name:"Tour Bahía Drake", price:160, duration:"Larga", desc:"Descubre la belleza virgen de Bahía Drake y su selva tropical."},
+      {id:12, name:"Tour Parque Nacional Corcovado", price:200, duration:"Larga", desc:"Explora uno de los parques más biodiversos del mundo, Corcovado."},
+      {id:13, name:"Tour Arenal en Bici", price:110, duration:"Media", desc:"Recorre en bicicleta los paisajes impresionantes del Volcán Arenal."},
+      {id:14, name:"Tour Tárcoles y Cocodrilos", price:75, duration:"Corta", desc:"Observa la fauna salvaje en el río Tárcoles, famoso por sus cocodrilos."},
+      {id:15, name:"Tour Cultura Bribri", price:85, duration:"Corta", desc:"Vive la cultura indígena Bribri con experiencias y tradiciones ancestrales."},
+      {id:16, name:"Tour Volcán Poás", price:125, duration:"Media", desc:"Visita uno de los volcanes activos más accesibles y sus lagunas."},
+      {id:17, name:"Tour Cataratas Llanos de Cortés", price:85, duration:"Corta", desc:"Disfruta de la belleza natural de estas espectaculares cataratas."},
+      {id:18, name:"Tour Avistamiento de Tortugas en Tortuguero", price:170, duration:"Larga", desc:"Observa la llegada de tortugas marinas en el Parque Tortuguero."},
+      {id:19, name:"Tour Kayak en Golfo Dulce", price:140, duration:"Media", desc:"Explora la costa y manglares en kayak por el Golfo Dulce."},
+      {id:20, name:"Tour Café y Chocolate en Turrialba", price:90, duration:"Corta", desc:"Aprende sobre la producción de café y chocolate con degustación."}
+    ];
+
+    const resultsDiv = document.getElementById('results');
+    const searchBtn = document.getElementById('searchBtn');
+    const downloadHistoryBtn = document.getElementById('downloadHistoryBtn');
+    const downloadManualBtn = document.getElementById('downloadManualBtn');
+    const favsKey = 'tourFavorites';
+
+    // 8. LOCALSTORAGE para favoritos
+    function loadFavorites() {
+      return JSON.parse(localStorage.getItem(favsKey) || "[]");
+    }
+    function saveFavorites(favs) {
+      localStorage.setItem(favsKey, JSON.stringify(favs));
+    }
+
+    const favHistoryKey = 'tourFavoritesHistory';
+    function loadFavoritesHistory() {
+      return JSON.parse(localStorage.getItem(favHistoryKey) || "[]");
+    }
+    function saveFavoritesHistory(history) {
+      localStorage.setItem(favHistoryKey, JSON.stringify(history));
+    }
+
+    // 1, 2. Programación JS, eventos, registro de historial
+    function registrarFavorito(id, accion) {
+      const history = loadFavoritesHistory();
+      history.push({
+        tourId: id,
+        action: accion,
+        timestamp: new Date().toISOString()
+      });
+      saveFavoritesHistory(history);
+    }
+
+    // 9. Resultados por pantalla y validaciones con SweetAlert (7)
+    function mostrarResultados(lista) {
+      resultsDiv.innerHTML = "";
+      const favoritos = loadFavorites();
+
+      if(lista.length === 0){
+        Swal.fire({
+          icon: 'info',
+          title: 'Sin resultados',
+          text: 'No se encontraron tours que coincidan con la búsqueda.',
+          confirmButtonColor: '#4caf50'
+        });
+        return;
+      }
+
+      lista.forEach(t => {
+        const isFav = favoritos.includes(t.id);
+        const div = document.createElement('div');
+
+        div.innerHTML = `
+          <div style="flex-grow:1; cursor:pointer;" tabindex="0" aria-expanded="false" aria-controls="info-${t.id}" role="button">
+            <strong>${t.name}</strong> (${t.duration}) - Precio: $${t.price} <br>
+            <small>${t.desc.substring(0, 50)}...</small>
+          </div>
+          <button aria-label="Marcar favorito" class="fav-button ${isFav ? 'favorito' : ''}" data-id="${t.id}">&#9733;</button>
+          <button class="info-btn" aria-expanded="false" aria-controls="info-${t.id}">Más info</button>
+          <div id="info-${t.id}" class="more-info" style="display:none; margin-top:10px;">
+            <p><strong>Descripción completa:</strong> ${t.desc}</p>
+            <p><strong>Duración:</strong> ${t.duration}</p>
+            <!-- 3. Cálculos financieros -->
+            <p><strong>Precio con impuesto 10%:</strong> $${(t.price * 1.10).toFixed(2)}</p>
+            <a href="contacto.html" tabindex="0">Contactar para reservar</a>
+          </div>
+        `;
+        resultsDiv.appendChild(div);
+      });
+
+      // 2. Eventos para favoritos y más info
+      document.querySelectorAll('.fav-button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = parseInt(btn.getAttribute('data-id'));
+          let favs = loadFavorites();
+          if(favs.includes(id)){
+            favs = favs.filter(f => f !== id);
+            btn.classList.remove('favorito');
+            registrarFavorito(id, 'removido');
+          } else {
+            favs.push(id);
+            btn.classList.add('favorito');
+            registrarFavorito(id, 'agregado');
+          }
+          saveFavorites(favs);
+        });
+      });
+
+      document.querySelectorAll('.info-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const controlsId = btn.getAttribute('aria-controls');
+          const infoDiv = document.getElementById(controlsId);
+          const expanded = btn.getAttribute('aria-expanded') === 'true';
+          if (expanded) {
+            infoDiv.style.display = 'none';
+            btn.setAttribute('aria-expanded', 'false');
+            btn.textContent = 'Más info';
+          } else {
+            infoDiv.style.display = 'block';
+            btn.setAttribute('aria-expanded', 'true');
+            btn.textContent = 'Menos info';
+          }
+        });
+      });
+    }
+
+    // 4. Búsquedas, 5. Filtrado de datos, 6. Controles de formulario, 7. Validación y micro interacciones
+    function buscarTours() {
+      const nameFilter = document.getElementById('tourName').value.toLowerCase();
+      const priceMinRaw = document.getElementById('priceMin').value;
+      const priceMaxRaw = document.getElementById('priceMax').value;
+      const priceMin = priceMinRaw === "" ? 0 : parseFloat(priceMinRaw);
+      const priceMax = priceMaxRaw === "" ? Infinity : parseFloat(priceMaxRaw);
+      const duration = document.getElementById('durationSelect').value;
+
+      // 7. Validaciones con SweetAlert2
+      if ((priceMin === 0 || isNaN(priceMin)) && (priceMax === Infinity || priceMax === 0 || isNaN(priceMax))) {
+        Swal.fire({
+          icon: 'warning',
+          title: 'Valores inválidos',
+          text: 'Por favor ingrese un rango de precios válido para buscar.',
+          confirmButtonColor: '#4caf50'
+        });
+        return;
+      }
+
+      // 5. Filtrado
+      const filtrados = tours.filter(t => {
+        return t.name.toLowerCase().includes(nameFilter) &&
+              t.price >= priceMin &&
+              t.price <= priceMax &&
+              (duration === "" || t.duration === duration);
+      });
+      mostrarResultados(filtrados);
+    }
+
+    // 11. Descarga PDF con jsPDF de tours filtrados
+    async function descargarHistorialPDF() {
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF();
+      let y = 10;
+      pdf.setFontSize(18);
+      pdf.text("Listado de Tours Filtrados", 10, y);
+      y += 10;
+      const tourDivs = resultsDiv.querySelectorAll('div > div[role="button"]');
+      if (tourDivs.length === 0) {
+        Swal.fire({
+          icon: 'info',
+          title: 'Sin resultados',
+          text: 'No hay tours para descargar en PDF.',
+          confirmButtonColor: '#4caf50'
+        });
+        return;
+      }
+      pdf.setFontSize(12);
+      tourDivs.forEach((div) => {
+        let name = div.querySelector('strong').textContent;
+        let durationMatch = div.textContent.match(/\((Corta|Media|Larga)\)/);
+        let duration = durationMatch ? durationMatch[0] : "";
+        let priceMatch = div.textContent.match(/Precio: \$\d+/);
+        let price = priceMatch ? priceMatch[0] : "";
+        pdf.text(name + " " + duration, 10, y);
+        y += 7;
+        pdf.text(price, 10, y);
+        y += 7;
+        y += 5;
+        if (y > 280) {
+          pdf.addPage();
+          y = 10;
+        }
+      });
+      pdf.save("tours_filtrados.pdf");
+    }
+
+    // 12. Descarga manual en PDF (archivo externo)
+    function descargarManualPDF() {
+      const link = document.createElement('a');
+      link.href = 'Manual de usuario.pdf'; // Cambia la ruta si tu PDF está en otra carpeta
+      link.download = 'Manual de usuario.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    searchBtn.addEventListener('click', buscarTours);
+    downloadHistoryBtn.addEventListener('click', descargarHistorialPDF);
+    downloadManualBtn.addEventListener('click', descargarManualPDF);
+
+    // Mostrar todos inicialmente
+    mostrarResultados(tours);
+
+  </script>
+
+  </body>
+  </html>

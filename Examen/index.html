@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interfaz Web</title>
+  <link href="imagenes/koala.png" rel="icon" />
+  <link href="css/index.css" rel="stylesheet" />
+</head>
+<body id="inicio">
+
+  <!-- Toggle de idioma -->
+  <div class="language-switch" aria-hidden="false" title="Cambiar idioma">
+    <span style="font-weight:700">ES</span>
+    <label class="switch">
+      <input type="checkbox" id="langToggle" aria-label="Toggle language">
+      <span class="slider"></span>
+    </label>
+    <span style="font-weight:700">EN</span>
+
+    <!-- Botón Login -->
+    <button id="btnShowLogin" aria-haspopup="dialog" aria-expanded="false" aria-controls="loginModal">Login</button>
+  </div>
+
+<header>
+  <nav class="menu-container">
+    <div class="menu-icon" onclick="toggleMenu()" aria-label="Abrir menú" tabindex="0" role="button">&#9776;</div>
+    <div id="side-menu" class="side-menu" aria-hidden="true">
+      <a href="javascript:void(0);" onclick="toggleMenu()" style="text-align:right; padding-right:20px; font-size: 24px;" aria-label="Cerrar menú">✕</a>
+      <a href="nosotros.html" data-translate="nav.about">Sobre nosotros</a>
+      <a href="contacto.html" data-translate="nav.contact">Contacto</a>
+      <a href="galeria.html" data-translate="nav.gallery">Galeria interactiva</a>
+      <a href="suscripcion.html" data-translate="nav.subscribe">Suscripción</a>
+      <a href="mapa_interactivo.html" data-translate="nav.discover">Descubra Costa Rica</a>
+      <a href="encuesta.html" data-translate="nav.vote">Votación de la comunidad</a>
+      <a href="testimonios.html" data-translate="nav.testimonials">Testimonios</a>
+      <a href="recursosexternos.html" data-translate="nav.externalResources">Recursos externos</a>
+      <a href="app.html" data-translate="nav.tourFinder">Buscador de Tours</a>
+    </div>
+  </nav>
+</header>
+
+  <section class="bannerweb">
+    <h1 class="bandera-texto">
+      <span>P</span><span>e</span><span>r</span><span>e</span><span>z</span><span>o</span><span>s</span><span>o</span><span>s</span>
+      <span> </span>
+      <span>P</span><span>u</span><span>r</span><span>a</span>
+      <span> </span>
+      <span>V</span><span>i</span><span>d</span><span>a</span>
+    </h1>
+    <div class="subtitulo" data-translate="banner.subtitle">
+      Turismo Interactivo y recomendaciones de viaje
+    </div>
+  </section>
+
+  <section>
+    <h3 class="centrado bajar2" data-translate="about.title">Sobre Nosotros</h3>
+    <p class="margen" data-translate="about-p1">
+      Perezosos Pura vida es una empresa de turismo con soluciones inmersivas a sus vacaciones, le recomendamos las vacaciones perfectas mediante una experiencia única y completamente inmersiva para que pueda empezar a disfrutar de las bellezas de Costa Rica incluso antes de iniciar el viaje!
+    </p>
+    <p class="margen" data-translate="about-p2">
+      1: Puede seleccionar la experiencia inmersiva o agendar una cita de 20 minutos sin costo para conocer más de nuestros servicios. La cita está sujeta a disponibilidad del personal.
+    </p>
+    <p class="margen" data-translate="about-p3">
+      2: También puede dejarnos su correo electrónico de contacto y con gusto le podemos enviar más información a su correo.
+    </p>
+    <div class="centrado">
+      <a class="botones" href="app.html" target="blank" data-translate="buttons.virtualTour">Tour Virtual</a>
+      <a class="botones" href="contacto.html" target="blank" data-translate="buttons.book">Agendar Cita</a>
+      <a class="botones" href="suscripcion.html" target="blank" data-translate="buttons.email">Correo electrónico</a>
+    </div>
+  </section>
+
+  <section class="galeria-lugares">
+    <h3 class="centrado bajar2" style="color: #004d00;" data-translate="gallery.title">Costa Rica</h3>
+    <div class="carousel">
+      <div class="carousel-track">
+        <img src="imagenes/todas.jpg" alt="Imagen 1" />
+        <img src="imagenes/conoce.png" alt="Imagen 2" />
+        <img src="imagenes/playa.jpg" alt="Imagen 3" />
+        <img src="imagenes/montana.jpg" alt="Imagen 4" />
+        <img src="imagenes/volcano.jpg" alt="Imagen 5" />
+        <img src="imagenes/todas.jpg" alt="Imagen 1" />
+        <img src="imagenes/conoce.png" alt="Imagen 2" />
+        <img src="imagenes/playa.jpg" alt="Imagen 3" />
+        <img src="imagenes/montana.jpg" alt="Imagen 4" />
+        <img src="imagenes/volcano.jpg" alt="Imagen 5" />
+      </div>
+    </div>
+  </section>
+
+<script src="js/menu.js"></script>
+<script src="js/login.js"></script>
+
+
+  <footer>
+    &copy; 2025 Perezosos Pura Vida - Todos los derechos reservados.
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="js/translate.js"></script>
+</body>
+</html>

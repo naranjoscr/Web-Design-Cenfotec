@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Suscripción - Perezosos Pura Vida</title>
+  <link href="css/index.css" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #f2f2f2, #d1e8e4);
+      margin: 0;
+      min-height: 100vh;
+      /* No centramos el contenido porque hay header fijo */
+      padding-top: 60px; /* espacio para header fijo */
+      padding-bottom: 70px; /* espacio para botón fijo */
+      color: #004d00;
+      position: relative;
+    }
+
+
+    /* Formulario suscripción */
+    .suscripcion-form {
+      background-image: url('imagenes/volcano.jpg');  
+      background-size: cover;
+      background-position: center;
+      width: 100%;
+      max-width: 480px;
+      margin: 90px auto 0 auto;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      backdrop-filter: blur(5px);
+      background-color: rgba(0, 77, 0, 0.7); /* verde oscuro semitransparente */
+      color: white;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      z-index: 10;
+    }
+
+    .suscripcion-form h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-weight: bold;
+      font-size: 2rem;
+      color: white;
+      text-shadow: 1px 1px 3px #0a310a;
+    }
+
+    label {
+      font-weight: 600;
+      margin-bottom: 8px;
+      display: block;
+      color: white;
+    }
+
+    input[type="email"] {
+      width: 100%;
+      padding: 12px 15px;
+      border-radius: 8px;
+      border: 1px solid #66bb6a;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.3s ease;
+      margin-bottom: 20px;
+      color: black;
+      background-color: white;
+    }
+
+    input[type="email"]:focus {
+      border-color: #a3d9a5;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      color: white;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+      margin-right: 10px;
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+
+    button {
+      background-color: #28a745;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      padding: 14px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #1b6b1b;
+    }
+
+    .mensaje {
+      margin-top: 20px;
+      text-align: center;
+      font-weight: 600;
+      color: white;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header>
+  <nav class="menu-container">
+    <div class="menu-icon" onclick="toggleMenu()" aria-label="Abrir menú" role="button" tabindex="0">&#9776;</div>
+    <div id="side-menu" class="side-menu" aria-hidden="true">
+      <ul>
+        <li><a href="nosotros.html">Sobre nosotros</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="galeria.html">Galería interactiva</a></li>
+        <li><a href="suscripcion.html">Suscripción</a></li>
+        <li><a href="mapa_interactivo.html">Descubra Costa Rica</a></li>
+        <li><a href="encuesta.html">Votación de la comunidad</a></li>
+        <li><a href="testimonios.html">Testimonios</a></li>
+        <li><a href="recursos_externos.html">Recursos externos</a></li>
+        <li><a href="app.html">Buscadao de Tours</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <!-- Formulario suscripción -->
+  <form class="suscripcion-form" id="suscripcion-form">
+    <h2>Suscríbete a nuestras recomendaciones</h2>
+
+    <label for="email">Correo electrónico:</label>
+    <input type="email" id="email" name="email" placeholder="tuemail@ejemplo.com" required />
+
+    <div class="checkbox-group">
+      <input type="checkbox" id="acepto" name="acepto" required />
+      <label for="acepto">Acepto que mi correo electrónico sea utilizado para contacto</label>
+    </div>
+
+    <div class="checkbox-group">
+      <input type="checkbox" id="suscribirme" name="suscribirme" />
+      <label for="suscribirme">Deseo suscribirme para recibir recomendaciones por correo electrónico para obtener historias y novedades mensuales.</label>
+    </div>
+
+    <button type="submit">Suscribirme</button>
+
+    <div class="mensaje" id="mensaje"></div>
+  </form>
+</main>
+
+
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    (function() {
+      emailjs.init("i5U3Y9gJE9hxvcL6G"); // Reemplaza con tu Public Key
+    })();
+
+    const form = document.getElementById('suscripcion-form');
+    const mensajeDiv = document.getElementById('mensaje');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      emailjs.sendForm('service_al09g2e', 'template_9uvndzr', this)
+        .then(() => {
+          mensajeDiv.style.color = '#2a7a2a';
+          mensajeDiv.textContent = '✅ Gracias por suscribirte. Revisa tu correo para más información.';
+          form.reset();
+        }, (error) => {
+          mensajeDiv.style.color = '#a42828';
+          mensajeDiv.textContent = '❌ Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.';
+          console.error('EmailJS error:', error);
+        });
+    });
+
+    function toggleMenu() {
+      const menu = document.getElementById('side-menu');
+      const isOpen = menu.classList.toggle('open');
+      menu.setAttribute('aria-hidden', !isOpen);
+    }
+
+    // Cerrar menú si se hace click fuera
+    document.addEventListener('click', (e) => {
+      const menu = document.getElementById('side-menu');
+      const menuIcon = document.querySelector('.menu-icon');
+      if(menu.classList.contains('open') && !menu.contains(e.target) && !menuIcon.contains(e.target)) {
+        menu.classList.remove('open');
+        menu.setAttribute('aria-hidden', 'true');
+      }
+    });
+  </script>
+
+<footer style="display: flex; align-items: center; padding: 10px;">
+  <button onclick="window.location.href='index.html'" style="padding: 5px 10px; cursor: pointer;">
+    Volver
+  </button>
+  <span style="flex: 1; text-align: center;">
+    &copy; 2025 Perezosos Pura Vida - Todos los derechos reservados.
+  </span>
+</footer>
+
+<script src="js/menu.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Plantilla con Side Menu y Footer</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            padding-bottom: 60px; /* espacio para el footer fijo */
+            background: url('imagenes/volcano.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+
+        /* Header verde fijo */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background-color: #004d00;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 1400;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+            user-select: none;
+        }
+
+        /* Contador visitas */
+        #contadorVisitas {
+         font-size: 0.9rem;
+         color: #cde5c0;
+         font-weight: 600;
+         background: rgba(0,0,0,0.3);
+         padding: 5px 12px;
+         border-radius: 20px;
+         user-select: text;
+         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+         margin-right: 40px;  /* <-- agregado */
+       }
+
+        /* Side Menu */
+        .side-menu {
+            position: fixed;
+            top: 60px; /* justo debajo del header */
+            left: -250px;
+            width: 250px;
+            height: calc(100vh - 60px);
+            background-color: #004d00;
+            padding-top: 20px;
+            transition: left 0.3s ease;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+            overflow-y: auto;
+            z-index: 1300;
+        }
+
+        .side-menu.open {
+            left: 0;
+        }
+
+        .side-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .side-menu ul li {
+            margin: 15px 0;
+        }
+
+        .side-menu ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            display: block;
+            transition: background 0.3s ease;
+        }
+
+        .side-menu ul li a:hover,
+        .side-menu ul li a:focus {
+            background-color: #66bb6a;
+            outline: none;
+        }
+
+        /* Menu Icon dentro del header */
+        .menu-icon {
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        /* Footer */
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #222;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            z-index: 1500;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.5);
+        }
+
+        footer .boton-volver {
+            background-color: #28a745;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            padding: 10px 18px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        footer .boton-volver:hover {
+            background-color: #1b6b1b;
+        }
+
+        footer span {
+            flex: 1;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* Contenido demo */
+        main {
+            padding: 120px 30px 100px 30px; /* más espacio arriba para header */
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center; /* centrar texto */
+        }
+
+        .descripcion-empresa {
+            color: white;
+            font-size: 1.3rem; /* un poco más grande */
+            line-height: 1.8; /* más espacio entre líneas */
+            margin: 40px auto; /* margen vertical más amplio y centrado */
+            background-color: rgba(0, 0, 0, 0.55);
+            padding: 25px 35px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.9); /* sombra para el texto */
+            max-width: 700px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="menu-icon" id="menuToggle" aria-label="Abrir menú" role="button" tabindex="0">&#9776;</div>
+        <div id="contadorVisitas" aria-live="polite" aria-atomic="true">Visitantes: 0</div>
+    </header>
+
+    <nav id="side-menu" class="side-menu" aria-hidden="true">
+        <ul>
+            <li><a href="nosotros.html">Sobre nosotros</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="galeria.html">Galería interactiva</a></li>
+            <li><a href="suscripcion.html">Suscripción</a></li>
+            <li><a href="mapa_interactivo.html">Descubra Costa Rica</a></li>
+            <li><a href="encuesta.html">Votación de la comunidad</a></li>
+            <li><a href="testimonios.html">Testimonios</a></li>
+            <li><a href="recursos_externos.html">Recursos externos</a></li>
+            <li><a href="app.html">Buscadao de Tours</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h1>Contenido principal</h1>
+        <p class="descripcion-empresa">
+            En <strong>Perezosos Pura Vida</strong>, nos apasiona ofrecer las mejores recomendaciones de viaje para que
+            descubras Costa Rica como nunca antes. Nuestro equipo de expertos en turismo sostenible te guía para vivir experiencias auténticas,
+            inmersivas y responsables con el medio ambiente. Desde destinos paradisíacos hasta joyas escondidas,
+            te ayudamos a planificar vacaciones memorables que conectan con la naturaleza y la cultura local.
+            ¡Prepárate para una aventura inolvidable llena de pura vida!
+        </p>
+    </main>
+
+    <footer>
+        <button class="boton-volver" onclick="window.location.href='index.html'">Volver</button>
+        <span>&copy; 2025 Perezosos Pura Vida - Todos los derechos reservados.</span>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const sideMenu = document.getElementById('side-menu');
+        const contadorVisitasElem = document.getElementById('contadorVisitas');
+
+        menuToggle.addEventListener('click', () => {
+            const isOpen = sideMenu.classList.toggle('open');
+            sideMenu.setAttribute('aria-hidden', !isOpen);
+        });
+
+        // Cerrar menú si clic afuera
+        document.addEventListener('click', (e) => {
+            if (!sideMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                sideMenu.classList.remove('open');
+                sideMenu.setAttribute('aria-hidden', 'true');
+            }
+        });
+
+        // Contador de visitas usando localStorage
+        let visitas = localStorage.getItem('contadorVisitas');
+        if (!visitas) {
+            visitas = 1;
+        } else {
+            visitas = parseInt(visitas) + 1;
+        }
+        localStorage.setItem('contadorVisitas', visitas);
+        contadorVisitasElem.textContent = `Visitantes: ${visitas}`;
+    </script>
+
+</body>
+</html>

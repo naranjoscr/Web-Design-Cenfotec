@@ -1,0 +1,786 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: white;
+    overflow-x: hidden;
+    padding-top: 60px; /* espacio para header fijo */
+    padding-bottom: 70px; /* espacio para footer fijo */
+}
+
+/* Encabezados */
+h1, h2, h3, h4 {
+    color: #ffffff;
+}
+
+h1 {
+    font-size: 70px;
+}
+
+h2, h3, h4 {
+    font-size: 30px;
+}
+
+/* Texto */
+.formatos1 {
+    font-size: 30px;
+    color: #1570cd;
+    font-weight: bolder;
+}
+
+p {
+    font-size: 20px;
+    margin: 40px 100px;
+    text-align: justify;
+    color: #000;
+}
+
+/* Banner */
+.bannerweb {
+    background-image: url("../imagenes/volcano.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    box-shadow: 4px 0 4px rgba(0, 0, 0, 0.678), -4px 0 4px rgba(0, 0, 0, 0.678);
+    background-color: rgba(26, 6, 6, 0.486);
+    background-blend-mode: multiply;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 20px;
+}
+
+/* Clases para padding top */
+.bajar1 {
+    padding-top: 150px;
+}
+
+.bajar2 {
+    padding-top: 50px;
+}
+
+.bajar3 {
+    padding-top: 30px;
+}
+
+/* Centrados */
+.centrado {
+    text-align: center;
+}
+
+.color1 {
+    color: #ffffff;
+}
+
+/* Botones generales */
+.botones,
+form button,
+.boton-volver {
+    border: 3px solid #070707;
+    cursor: pointer;
+    color: #fff;
+    background-color: #009345;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    border-radius: 24px;
+    transition: all linear 0.2s;
+    text-decoration: none;
+    text-align: center;
+    user-select: none;
+}
+
+/* Botones */
+.botones {
+    width: auto;
+    font-size: 20px;
+    padding: 6px 35px;
+    text-shadow: 0px 1px 0px #1570cd;
+}
+
+.botones:hover {
+    width: 150px;
+    height: 30px;
+    background-color: #12cd53;
+    color: #efefef;
+}
+
+/* Formulario */
+.configform1 {
+    display: flex;
+    justify-content: center;
+    color: #fff;
+}
+
+label {
+    font-size: 24px;
+    float: left;
+    margin: 10px 20px;
+}
+
+input {
+    display: block;
+    margin-top: 10px;
+}
+
+.form-control,
+input.form-control {
+    font-size: 20px;
+    width: 400px;
+    max-width: 90vw;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-top: 15px;
+}
+
+/* Input error */
+.error {
+    border: 2px solid #8b0000 !important;
+    box-shadow: 0 0 5px #8b0000 !important;
+}
+
+/* Inputs texto y número */
+section form input[type="text"],
+section form input[type="number"] {
+    width: 300px;
+    font-size: 20px;
+    padding: 8px;
+}
+
+/* Form container */
+#facturaForm {
+    width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #f0f0f0;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Form groups */
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    width: 130px;
+    font-weight: bold;
+}
+
+.form-group input {
+    flex: 1;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Doble inputs */
+.doble-input {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.doble-input > div {
+    flex: 1 1 45%;
+}
+
+/* Resultado imagen */
+.resultado img {
+    max-width: 300px;
+    max-height: 200px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    object-fit: cover;
+}
+
+/* Video */
+video {
+    object-fit: cover;
+    width: 100%;
+}
+
+/* Modal */
+.modal {
+    display: none;  /* oculto al cargar */
+    position: fixed;
+    z-index: 1000;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    position: relative;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 800px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+}
+
+.modal-content img {
+    max-width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.3s ease;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+}
+
+/* Descripción modal */
+.descripcion {
+    font-size: 18px;
+    text-align: left;
+    color: #333;
+}
+
+#descripcion {
+    position: absolute;
+    max-width: 250px;
+    padding: 12px 15px;
+    border-radius: 10px;
+    background-color: #f0f0f0;
+    box-shadow: 0 0 8px rgba(0,0,0,0.15);
+    font-size: 16px;
+    display: none;
+    z-index: 1000;
+    pointer-events: auto;
+    margin: 0; /* quitar margenes */
+}
+
+/* Botón volver fijo */
+.boton-volver {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 2000;
+
+    width: 150px;
+    height: 40px;
+
+    border: 3px solid #070707;
+    cursor: pointer;
+    color: #fff;
+    background-color: #009345;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 24px;
+    transition: all linear 0.2s;
+    padding: 0;
+}
+
+.boton-volver:hover {
+    background-color: #00722e;
+}
+
+/* Mensajes */
+.mensaje {
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Formulario grupo radio */
+.form-group-radio {
+    margin-bottom: 20px;
+    color: #222;
+    background-color: rgba(255, 255, 255, 0.75);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.form-group-radio .radio-title {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+    color: #000;
+}
+
+.radio-options label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* SweetAlert2 override */
+.swal2-container {
+    z-index: 9999 !important;
+}
+
+/* Login modal */
+.login-container h2 {
+    color: black;
+    margin-bottom: 20px;
+}
+
+#btnShowLogin {
+    background-color: #4caf50;
+    border: none;
+    padding: 6px 12px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    user-select: none;
+    transition: background 0.3s ease;
+}
+
+#btnShowLogin:hover {
+    background-color: #45a049;
+}
+
+#loginModal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+}
+
+#loginModal .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 90%;
+}
+
+/* Menu lateral y header */
+
+header,
+.menu-container {
+    background-color: #004d00;
+    color: white;
+}
+
+header {
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1100;
+    box-sizing: border-box;
+}
+
+.menu-container {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    height: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #009345;
+    z-index: 1000;
+}
+
+.menu-icon {
+    font-size: 26px;
+    cursor: pointer;
+    user-select: none;
+    color: white;
+}
+
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100vh;
+    background-color: #004d00;
+    color: white;
+    transition: left 0.3s ease;
+    padding-top: 60px;
+    z-index: 1100;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+    overflow-y: auto;
+}
+
+.side-menu.open {
+    left: 0;
+}
+
+.side-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.side-menu li {
+    padding: 15px;
+    border-bottom: 1px solid #006400;
+}
+
+.side-menu a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Footer */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #333;
+    color: white;
+    height: 40px;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 -2px 6px rgba(0,0,0,0.4);
+    z-index: 1000;
+}
+
+.footer-text {
+    font-size: 14px;
+    user-select: none;
+}
+
+/* Switch de idioma */
+
+.language-switch {
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    z-index: 2000;
+    color: #fff;
+    user-select: none;
+}
+
+.switch {
+    position: relative;
+    width: 46px;
+    height: 26px;
+}
+
+.switch input {
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    inset: 0;
+    background: #ccc;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background .2s;
+}
+
+.slider::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    transition: transform .2s;
+}
+
+.switch input:checked + .slider {
+    background: #4caf50;
+}
+
+.switch input:checked + .slider::after {
+    transform: translateX(20px);
+}
+
+/* Banner */
+.bannerweb {
+  background-image: url('../imagenes/volcano.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  padding: 20px;
+}
+
+.bandera-texto span {
+  display: inline-block;
+  font-size: 4.5rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px black;
+}
+
+.bandera-texto span:nth-child(3n+1) { color: blue; }
+.bandera-texto span:nth-child(3n+2) { color: white; }
+.bandera-texto span:nth-child(3n) { color: red; }
+
+.subtitulo {
+  font-size: 2rem;
+  margin-top: 10px;
+  text-shadow: 1px 1px 2px black;
+}
+
+/* Galería / Carrusel */
+.galeria-lugares {
+  padding: 40px 0;
+  text-align: center;
+}
+
+.carousel {
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel-track {
+  display: flex;
+  width: max-content;
+  animation: scroll 30s linear infinite;
+}
+
+.carousel-track img {
+  width: 300px;
+  height: auto;
+  margin: 0 10px;
+  border-radius: 8px;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 45px;
+    }
+
+    h2, h3, h4 {
+        font-size: 24px;
+    }
+
+    p {
+        margin: 20px 15px;
+        font-size: 16px;
+    }
+
+    #facturaForm {
+        width: 90%;
+        padding: 10px;
+    }
+
+    .form-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .form-group label {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    .doble-input > div {
+        flex: 1 1 100%;
+    }
+
+    .botones, .boton-volver {
+        width: 100%;
+        font-size: 18px;
+        padding: 10px 0;
+    }
+
+    .menu-container {
+        padding: 10px;
+        height: 50px;
+    }
+
+    .side-menu {
+        width: 200px;
+        padding-top: 50px;
+    }
+}
+
+
+/* Estilos base para el menú lateral */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;          /* ancho menú */
+  height: 100vh;
+  background-color: #004d00; /* color de fondo */
+  overflow-y: auto;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  padding-top: 20px;
+  box-sizing: border-box;
+}
+
+/* Cuando el menú está abierto */
+.side-menu.open {
+  transform: translateX(0);
+}
+
+/* Links dentro del menú */
+.side-menu a {
+  display: block;
+  color: white;
+  padding: 12px 20px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+.side-menu a:hover {
+  background-color: #2e7d32; /* un verde más claro al pasar el mouse */
+}
+
+/* Icono del menú (hamburguesa) */
+.menu-icon {
+  font-size: 28px;
+  cursor: pointer;
+  color: white;
+  padding: 10px 15px;
+  user-select: none;
+}
+
+/* Para que el icono se vea bien en móvil y escritorio */
+.menu-container {
+  position: relative;
+  z-index: 1100;
+  background-color: #004d00;
+}
+
+/*para que el menú no tape el contenido al abrirse */
+body.menu-open {
+  overflow: hidden;
+}
+
+/* Ajustes para cerrar "✕" */
+.side-menu a[aria-label="Cerrar menú"] {
+  font-size: 28px;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+/* menú responsive, ejemplo para pantallas mayores */
+@media(min-width: 768px) {
+  .side-menu {
+    width: 300px;
+  }
+  .menu-icon {
+    font-size: 32px;
+  }
+}
+
+.login-container h2 {
+  color: black;
+  margin-bottom: 20px;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  width: 100%;
+  background-color: #f2f2f2;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.footer span {
+  flex: 1;
+  text-align: center;
+}
+
+.footer button {
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+
+.footer-contacto {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  position: relative; /* evita que quede fijo */
+  height: auto;
+  flex-wrap: wrap;
+}
+
+.footer-contacto button {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.footer-contacto span {
+  flex: 1;
+  text-align: center;
+}
+

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Recursos Externos</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #111;
+            color: white;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 60px; /* espacio para el footer fijo */
+        }
+
+        header {
+            background-color: #004d00;
+            padding: 10px 20px;
+            position: relative;
+            z-index: 1100;
+        }
+
+        .menu-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-icon {
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100vh;
+            background-color: #004d00;
+            padding-top: 60px;
+            transition: left 0.3s ease;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+            overflow-y: auto;
+            z-index: 1200;
+        }
+
+        .side-menu.open {
+            left: 0;
+        }
+
+        .side-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .side-menu ul li {
+            margin: 15px 0;
+        }
+
+        .side-menu ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            display: block;
+            transition: background 0.3s ease;
+        }
+
+        .side-menu ul li a:hover,
+        .side-menu ul li a:focus {
+            background-color: #66bb6a;
+            outline: none;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 20px 0;
+        }
+
+        /* Carrusel lateral */
+        .side-images {
+            width: 20vw;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .side-images.left {
+            margin-right: 15px;
+        }
+
+        .side-images.right {
+            margin-left: 15px;
+        }
+
+        .image-track {
+            display: flex;
+            flex-direction: column;
+            animation: scrollUp 20s linear infinite;
+        }
+
+        .side-images.right .image-track {
+            animation: scrollDown 20s linear infinite;
+        }
+
+        .image-track img {
+            width: 100%;
+            height: 20vh;
+            object-fit: cover;
+            display: block;
+        }
+
+        @keyframes scrollUp {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50%); }
+        }
+
+        @keyframes scrollDown {
+            0% { transform: translateY(-50%); }
+            100% { transform: translateY(0); }
+        }
+
+        .center-content {
+            max-width: 400px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        select {
+            padding: 10px 15px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #222;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            z-index: 1500;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.5);
+        }
+
+        footer .boton-volver {
+            background-color: #28a745;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            padding: 10px 18px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        footer .boton-volver:hover {
+            background-color: #1b6b1b;
+        }
+
+        footer span {
+            flex: 1;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* Responsive: ocultar imágenes laterales en pantallas chicas */
+        @media (max-width: 900px) {
+            .side-images {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="menu-container">
+            <div class="menu-icon" onclick="toggleMenu()" aria-label="Abrir menú" role="button" tabindex="0">&#9776;</div>
+            <div id="side-menu" class="side-menu" aria-hidden="true">
+                <ul>
+                    <li><a href="nosotros.html">Sobre nosotros</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                    <li><a href="galeria.html">Galería interactiva</a></li>
+                    <li><a href="suscripcion.html">Suscripción</a></li>
+                    <li><a href="mapa_interactivo.html">Descubra Costa Rica</a></li>
+                    <li><a href="encuesta.html">Votación de la comunidad</a></li>
+                    <li><a href="testimonios.html">Testimonios</a></li>
+                    <li><a href="recursosexternos.html">Recursos externos</a></li>
+                    <li><a href="app.html">Buscadao de Tours</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Carrusel lado izquierdo -->
+        <div class="side-images left" aria-label="Carrusel de imágenes lado izquierdo" role="region">
+            <div class="image-track">
+                <img src="imagenes/volcano.jpg" alt="Volcán" />
+                <img src="imagenes/todas.jpg" alt="Imagen 2" />
+                <img src="imagenes/cascada.jpg" alt="Cascada" />
+                <img src="imagenes/playa.jpg" alt="Playa" />
+                <img src="imagenes/montana.jpg" alt="Montaña" />
+                <!-- repetimos para scroll infinito -->
+                <img src="imagenes/volcano.jpg" alt="Volcán" />
+                <img src="imagenes/todas.jpg" alt="Imagen 2" />
+                <img src="imagenes/cascada.jpg" alt="Cascada" />
+                <img src="imagenes/playa.jpg" alt="Playa" />
+                <img src="imagenes/montana.jpg" alt="Montaña" />
+            </div>
+        </div>
+
+        <!-- Contenido central -->
+        <div class="center-content">
+            <select id="resourceSelect" aria-label="Seleccione un recurso">
+                <option value="" disabled selected>Seleccione un recurso</option>
+                <option value="https://www.google.com/search?client=firefox-b-d&q=conoversor+dolares+a+colones">Conversor dolares a colones</option> 
+                <option value="https://www.tripadvisor.es/Tourism-g291982-Costa_Rica-Vacations.html">Trip Advisor</option> 
+                <option value="https://www.airbnb.co.cr/a/stays/Costa-Rica?c%5B%5D=.pi0.pk342411262_64429030485&c%5B%5D=.pi0.pk342411262_64429030485&gclsrc=aw.ds&localized_ghost=true&gad_source=1&gad_campaignid=342411262&gclid=CjwKCAjw49vEBhAVEiwADnMbbPW3ciUDx5boyPj_xj6wJwsLOjWBgr6RNhJwQ7mBRyfpVe_G5nuF-hoCMq8QAvD_BwE&_set_bev_on_new_domain=1744572291_EANDUxNDJlMTMwMT">airbnb Costa Rica</option>
+                <option value="https://www.youtube.com/watch?v=oFxi5a_JZbo">Consejos de viaje</option>
+                <option value="https://www.youtube.com/watch?v=5Ux0ZMpWdzU">Conducir en Costa Rica</option>
+            </select>
+        </div>
+
+        <!-- Carrusel lado derecho -->
+        <div class="side-images right" aria-label="Carrusel de imágenes lado derecho" role="region">
+            <div class="image-track">
+                <img src="imagenes/volcano.jpg" alt="Volcán" />
+                <img src="imagenes/todas.jpg" alt="Imagen 2" />
+                <img src="imagenes/cascada.jpg" alt="Cascada" />
+                <img src="imagenes/playa.jpg" alt="Playa" />
+                <img src="imagenes/montana.jpg" alt="Montaña" />
+                <!-- repetimos para scroll infinito -->
+                <img src="imagenes/volcano.jpg" alt="Volcán" />
+                <img src="imagenes/todas.jpg" alt="Imagen 2" />
+                <img src="imagenes/cascada.jpg" alt="Cascada" />
+                <img src="imagenes/playa.jpg" alt="Playa" />
+                <img src="imagenes/montana.jpg" alt="Montaña" />
+            </div>
+        </div>
+    </main>
+
+<footer>
+    <button class="boton-volver" onclick="window.location.href='index.html'">Volver</button>
+    <span>&copy; 2025 Perezosos Pura Vida - Todos los derechos reservados.</span>
+</footer>
+
+<script>
+    function toggleMenu() {
+        const menu = document.getElementById('side-menu');
+        const isOpen = menu.classList.toggle('open');
+        menu.setAttribute('aria-hidden', !isOpen);
+    }
+
+    // Cerrar menú si se hace click fuera
+    document.addEventListener('click', (e) => {
+        const menu = document.getElementById('side-menu');
+        const menuIcon = document.querySelector('.menu-icon');
+        if(menu.classList.contains('open') && !menu.contains(e.target) && !menuIcon.contains(e.target)) {
+            menu.classList.remove('open');
+            menu.setAttribute('aria-hidden', 'true');
+        }
+    });
+
+    // Abrir link en nueva pestaña al cambiar el select
+    const select = document.getElementById('resourceSelect');
+    select.addEventListener('change', function() {
+        const url = this.value;
+        if(url) {
+            window.open(url, '_blank');
+            this.selectedIndex = 0; // reset
+        }
+    });
+</script>
+
+</body>
+</html>
