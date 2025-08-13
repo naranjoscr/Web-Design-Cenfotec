@@ -117,19 +117,30 @@
 <body>
 
 <header>
-  <nav class="menu-container">
+  <nav class="menu-container" style="display: flex; justify-content: space-between; align-items: center;">
+    <!-- Menú hamburguesa -->
     <div class="menu-icon" onclick="toggleMenu()" aria-label="Abrir menú" role="button" tabindex="0">&#9776;</div>
+    
+    <!-- Pestañas visibles a la derecha -->
+    <ul style="list-style: none; display: flex; gap: 20px; margin: 0; padding: 0;">
+      <li><a href="nosotros.html" style="text-decoration: none; color: inherit;">Sobre Nosotros</a></li>
+      <li><a href="contacto.html" style="text-decoration: none; color: inherit;">Contacto</a></li>
+      <li><a href="galeria.html" style="text-decoration: none; color: inherit;">Galería</a></li>
+      <li><a href="app.html" style="text-decoration: none; color: inherit;">Buscador de Tours</a></li>
+    </ul>
+
+    <!-- Menú lateral hamburguesa -->
     <div id="side-menu" class="side-menu" aria-hidden="true">
       <ul>
-        <li><a href="nosotros.html">Sobre nosotros</a></li>
+        <li><a href="nosotros.html">Sobre Nosotros</a></li>
         <li><a href="contacto.html">Contacto</a></li>
-        <li><a href="galeria.html">Galería interactiva</a></li>
+        <li><a href="galeria.html">Galería</a></li>
+        <li><a href="app.html">Buscador de Tours</a></li>
         <li><a href="suscripcion.html">Suscripción</a></li>
         <li><a href="mapa_interactivo.html">Descubra Costa Rica</a></li>
         <li><a href="encuesta.html">Votación de la comunidad</a></li>
         <li><a href="testimonios.html">Testimonios</a></li>
-        <li><a href="recursos_externos.html">Recursos externos</a></li>
-        <li><a href="app.html">Buscadao de Tours</a></li>
+        <li><a href="recursosexternos.html">Recursos externos</a></li>
       </ul>
     </div>
   </nav>
